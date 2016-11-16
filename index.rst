@@ -14,6 +14,7 @@ Contents:
    android
    ios
    web
+   server
    protocol
 
 
