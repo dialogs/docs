@@ -1,0 +1,5 @@
+Dialog SDK and server docs.
+
+Run ./install-deps.sh to install dependencies.
+
+Run ./watch.sh to build as doc files change.
