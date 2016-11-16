@@ -41,8 +41,11 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.graphviz',
+    'sphinxcontrib.blockdiag',
+    'sphinxcontrib.nwdiag',
 ]
+
+blockdiag_fontpath = ['_fonts/DejaVuSerif-Bold.ttf']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
