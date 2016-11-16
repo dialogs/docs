@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>Actor Ratchet (based on Axolotl Ratchet)</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='Dialog SDK Documentation'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../js/page.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="../css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="../images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="../e2e/actor-ratchet.html" class="active">
+<span class="home-icon">⌂</span>Actor Ratchet (based on Axolotl Ratchet)
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="../e2e/actor-ratchet.html" class="active">Actor Ratchet (based on Axolotl Ratchet)</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="../e2e/actor-ratchet.html" class="active">
+<span class="home-icon">⌂</span>Actor Ratchet (based on Axolotl Ratchet)
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#actor-ratchet-based-on-axolotl-ratchet-" name="actor-ratchet-based-on-axolotl-ratchet-" class="anchor"><span class="anchor-link"></span></a>Actor Ratchet (based on Axolotl Ratchet)</h1>
+<p>Actor Ratchet is based on ideas of Axolotl Ratchet, but improve it to make it self-healing proto if something goes wrong in implementation or device environment.</p>
+<p>Axolotl also requires to keep RootKey and complex state about encryption. We are trying to avoid this and make proto to be able to automatically heal itself.</p>
+<p>Instead of Axolotl, Actor Ratchet support multi-device key syncing for better performance and less offline key verification iterations.</p>
+<p>Actor Ratchet and Axolotl Ratchet are both session protocols, but unlike Axolotl - Actor&rsquo;s sessions are short lived. Actor&rsquo;s sessions are almost same as Axolotl, but they are supposed to live much shorter and can be easily discharged after 24 hours.</p>
+<p>There are various sources for describing Axolotl Ratchet and there are different ways to implement this, our specs are based on: * <a href="https://whispersystems.org/blog/advanced-ratcheting/">https://whispersystems.org/blog/advanced-ratcheting/</a> * <a href="https://github.com/trevp/axolotl/wiki">https://github.com/trevp/axolotl/wiki</a> * <a href="https://github.com/WhisperSystems/Signal-Android/wiki/ProtocolV2">https://github.com/WhisperSystems/Signal-Android/wiki/ProtocolV2</a></p>
+<h1><a href="#public-keys" name="public-keys" class="anchor"><span class="anchor-link"></span></a>Public Keys</h1>
+<p>Each Key Group have Curve25519 public keys: * <strong>Identity Key</strong> - main static public key that is used for identification * <strong>Ephermal Keys</strong> - a lot of temporary public keys that is used to start conversaion * <strong>Last Chance Key</strong> - semi-static key that is used when there are no ephermal keys are available</p>
+<p>All this keys are uploaded to Actor Server befor starting communcation.</p>
+<h1><a href="#description" name="description" class="anchor"><span class="anchor-link"></span></a>Description</h1>
+<p>We start with case when Alice wants to send message to Bob for the first time.</p>
+<p>Alice keys: (AI,AI&rsquo;) - identity key paris, (A1,A1&lsquo;)..(AN,AN&rsquo;) - ephermal key pairs</p>
+<p>Bob keys: (BI,BI&rsquo;) - identity key paris, (B1,AB&rsquo;)..(BN,BN&rsquo;) - ephermal key pairs</p>
+<h2><a href="#sessions" name="sessions" class="anchor"><span class="anchor-link"></span></a>Sessions</h2>
+<p>Each session is identified by <em>Identity Keys</em> and <em>Initial Ephermal Keys</em>.</p>
+<p>Each <strong>Session</strong> state contains: * Identity Keys - static for a lifetime * Initial Ephermal Keys - static for a lifetime * Last 10 received ephermal keys - can be safely discharged in an 24 hours * Last 10 sent ephermal keys - can be safely discharged in an 24 hours</p>
+<p>Even if <strong>Session</strong> is lost it could be restored without ephermal keys by just download new identity keys from server. New ephermal keys are healed right after first message exchange. Untill first message sent it is unable to receive any messages from this session.</p>
+<p>Each <em>Chain</em> state contains: * Reference to related <strong>Session</strong> * Current outgoing ephermal key</p>
+<h2><a href="#starting-a-new-session" name="starting-a-new-session" class="anchor"><span class="anchor-link"></span></a>Starting a new Session</h2>
+<p>Alice pick own ephermal key pair (A0, A0&rsquo;) and bob&rsquo;s ephermal public key (B0) - both of them are stored at server and can be easily downloaded by both parties.</p>
+<p>For deterministic key creation you need to assume that AI &lt; BI. If it is not, swap A* and B* in calculation.</p>
+<p>Based on ephermal keys both parties can compute master_secret:</p>
+<pre class="prettyprint"><code>master_secret = SHA256(ECDH(AI&#39;, B0)  + ECDH(A0&#39;, BI) + ECDH(A0&#39;, B0))
+</code></pre>
+<p>There can be an issue that both sides creates new session with different ephermal keys. If app receives message from new session if should switch to a new one and discard old one (**TO BE DISCUSSED**). Alternative is providing more control from server-side about negotiation of a session.</p>
+<h2><a href="#encryption-chain" name="encryption-chain" class="anchor"><span class="anchor-link"></span></a>Encryption Chain</h2>
+<p>After establishing master_secret client need to prepare encryption chain. For building a new chain client need to have one additional ephermal key from both sides. It can be used one of the public ephermal keys from server key directory or from previously received message. <strong>This keys are not required to be directly uploaded to key directory.</strong></p>
+<p>Client&rsquo;s <em>MUST</em> create new ecnryption chains when they receive new ephermal key from other side or every 24 hours.</p>
+<p>Chain is <em>one-side</em> entity, that mean that only sender use it <strong>only</strong> for encryption and receiver use it <strong>only</strong> for decryption.</p>
+<p>Let&rsquo;s say we pick A1 and B1 keys to our new Chain then we will calculate <em>root_chain_key</em> (**TODO: key size?**):</p>
+<pre class="prettyprint"><code>root_chain_key = HKDF(key = ECDH(A1&#39;, B1), salt = master_secret, info = &quot;ActorRatchet&quot;.getBytes())
+</code></pre>
+<h2><a href="#encryption-key-for-a-message" name="encryption-key-for-a-message" class="anchor"><span class="anchor-link"></span></a>Encryption key for a message</h2>
+<p>Each message have message_index in current encryption chain starting from zero. For each message client need to generate message_key based on root_chain_key, then exend it to 64 bytes with HKDF and split it to cipher_key and mac_key:</p>
+<pre class="prettyprint"><code>message_key = HMAC_SHA256(root_chain_key, message_index[0..4])
+message_key_extendend = HKDF(message_key, 64)
+cipher_key = message_key_extendend[0..31]
+mac_key = message_key_extendend[32..63]
+</code></pre>
+<h2><a href="#encryption" name="encryption" class="anchor"><span class="anchor-link"></span></a>Encryption</h2>
+<p>For each message random iv (16 bytes) is generated and then message encrypted and MACed:</p>
+<pre class="prettyprint"><code>iv = random[0..16]
+cipher_text = AES-128-CBC(iv, cipher_key, plain_text)
+cipher_mac = HMAC_SHA256(mac_key, cipher_text)
+</code></pre>
+<h2><a href="#outgoing-package" name="outgoing-package" class="anchor"><span class="anchor-link"></span></a>Outgoing Package</h2>
+<p>Encrypted Result is serialized to:</p>
+<pre class="prettyprint"><code>PreMessage {
+  sender_ephermal_id: int64 = A0.id
+  receiver_ephermal_id: int64 = B0.id
+  sender_ephermal_key: bytes = A1
+  receiver_ephermal_key: bytes = B1
+  message_index: int32 = message_index
+  iv: bytes
+  cipher_text: bytes
+  cipher_mac: bytes
+}
+</code></pre>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../e2e/actor-ratchet.html#actor-ratchet-based-on-axolotl-ratchet-">Actor Ratchet (based on Axolotl Ratchet)</a>
+  <ul>
+    <li><a href="../e2e/actor-ratchet.html#public-keys">Public Keys</a></li>
+    <li><a href="../e2e/actor-ratchet.html#description">Description</a></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2016</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="../lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="../js/magellan.js"></script>
+
+<style type="text/css">@import "../lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>

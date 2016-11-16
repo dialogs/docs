@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>Authentication Key</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='Dialog SDK Documentation'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../js/page.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="../css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="../images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="../protocol/key-creation.html" class="active">
+<span class="home-icon">⌂</span>Authentication Key
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="../protocol/key-creation.html" class="active">Authentication Key</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="../protocol/key-creation.html" class="active">
+<span class="home-icon">⌂</span>Authentication Key
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#authentication-key" name="authentication-key" class="anchor"><span class="anchor-link"></span></a>Authentication Key</h1>
+<p>In rev3 of protocol MTProto v2 introduces a better way of authentication of requests. In previous versions server tell authKey explictly and client apps need to pass it to every request for authentication. This is not a problem as TLS is required and everything is encrypted by default already. But we think that can be a problem in some cases on the server side as this key flaws around the server and can occasionaly appear in server&rsquo;s logs. On the other side application might need to have some shared secret for performing various security related tasks, for example, sigining voice call requests.</p>
+<p>Eventually, in rev4 of MTProto we will eliminate using of TLS for better speed and security.</p>
+<p>MTProtoV2 uses Curve25519 for performing DH for calculating AuthKey.</p>
+<p>This technique use <a href="https://tools.ietf.org/html/rfc5246">TLS 1.2 RFC</a> for it&rsquo;s basis and doesn&rsquo;t try to invent wheel, but improves performance of TLS:</p>
+<ul>
+  <li>Not sending server certificates if not needed on every connection.</li>
+  <li>One DiffieHellman to build one shared secret without repeating on almost every reconnect. (we will implement PFS in next revision of MTProto v2)</li>
+  <li>Using only Curve25519, AES-CBC, Kuznechik-CBC and Streebog</li>
+  <li>Extending master_secret to make it 256 bytes long with two different algorithms based on TLS&rsquo;s PRF function with SHA256 and Streebog hashes.</li>
+  <li>Added Signing of response just to check that everything is ok and add one more protection level</li>
+  <li><strong>Protocol uses 256 bits of block length in HMAC instead of standart one</strong>. This was caused by bug in initial implementation of HMAC, but doesn&rsquo;t affect security parameters.</li>
+</ul>
+<h1><a href="#primitives" name="primitives" class="anchor"><span class="anchor-link"></span></a>Primitives</h1>
+<p>SHA256-based pseudo-random function (<a href="https://tools.ietf.org/html/rfc5246#section-5)">https://tools.ietf.org/html/rfc5246#section-5)</a>:</p>
+<pre class="prettyprint"><code>PRF(secret: bytes, label: string, seed: bytes) = P_SHA256(secret, bytes(label) + seed);
+P_SHA256(secret, seed) = SHA256(secret, A(1) + seed) + SHA256(secret, A(2) + seed) + SHA256(secret, A(3) + seed) + ...
+  where A():
+    A(0) = seed
+    A(i) = HMAC_hash(secret, A(i-1))
+</code></pre>
+<p>Original key is too short - only 32 bytes and we need to extend key to more bytes in a secure way. Pseudo-code above is taken from TLS 1.2 RFC. Basic idea is to take some plain-text seed from client and server, add some fixed seed to avoid getting same hashes in different parts of a program. We use client and server seed for protecting from not that good random generators. Using text as fixed seed value is for cleaner code and specifications. In our Implementation we are performing <strong>8</strong> SHA256 calculations.</p>
+<h1><a href="#new-requesting-authentication-key" name="new-requesting-authentication-key" class="anchor"><span class="anchor-link"></span></a>New Requesting Authentication Key</h1>
+<p>Old method of AuthId creation will continue to work, but rev3 introduces new way of more secure way to get AuthId and AuthKey.</p>
+<h4><a href="#servers-key-loading" name="servers-key-loading" class="anchor"><span class="anchor-link"></span></a>Server&rsquo;s Key Loading</h4>
+<p>Before begin you need to securely generate random long value - randomId. This is temprorary unique id used by server to identify authentication session. Server doesn&rsquo;t try to scope authentication procedure to single connection and even to single server and this value helps it to identify state of DH. If collision will take place it will only lead to DH failure and nothing more.</p>
+<p>Before start Client MUST send <code>RequestStartAuth</code> message: </p>
+<pre class="prettyprint"><code>RequestStartAuth {
+  HEADER = 0xE0
+  randomId: long
+}
+</code></pre>
+<p>Server MUST return list of truncated to 8 bytes of SHA-256 of available keys</p>
+<pre class="prettyprint"><code>ResponseStartAuth {
+  HEADER = 0xE1
+  randomId: long
+  availableKeys: longs
+  serverNonce: bytes
+}
+</code></pre>
+<p>Client downloads required key. Client can skip downloading keys if it have built-in keys installed.</p>
+<pre class="prettyprint"><code>RequestGetServerKey {
+  HEADER = 0xE2
+  keyId: long
+}
+</code></pre>
+<p>Server return raw key data. Client MUST to check received key by comparing FULL hash that is hardcoded inside application. Again, DON&rsquo;T compare truncated hashes - this is insecure. </p>
+<pre class="prettyprint"><code>ResponseGetServerKey {
+  HEADER = 0xE3
+  keyId: long
+  key: bytes
+}
+</code></pre>
+<h4><a href="#performing-diffie-hellman" name="performing-diffie-hellman" class="anchor"><span class="anchor-link"></span></a>Performing Diffie Hellman</h4>
+<pre class="prettyprint"><code>RequestDH {
+  HEADER = 0xE6
+  randomId: long
+  // Used keyId
+  keyId: long
+  // Client&#39;s 32 securely generated bytes
+  clientNonce: bytes
+  // Client&#39;s key used for encryption
+  clientKey: bytes
+}
+</code></pre>
+<p>Calculations</p>
+<pre class="prettyprint"><code>pre_master_secret := &lt;result_of_dh&gt;
+master_secret := PRF_COMBINED(pre_master_secret, &quot;master secret&quot;, clientNonce + ServerNonce, 128)
+verify := PRF_COMBINED(master_secret, &quot;client finished&quot;, clientNonce + ServerNonce, 256)
+verify_sign := Ed25519(verification, server_private_signing_key)
+
+where PRF_COMBINED:
+  PRF(COMBINE(SHA256, STREEBOG256)), where:
+    COMBINE(str, HASH1, HASH2) = HASH1(str + HASH2(str))
+</code></pre>
+<p>master_secret is result encryption key. First 128 bytes is US encryption keys and last 128 bytes is Russian encryption keys.</p>
+<pre class="prettyprint"><code>ResponseDoDH {
+  HEADER = 0xE7
+  randomId: long
+  verify: bytes
+  verifySign: bytes
+}
+</code></pre>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../protocol/key-creation.html#authentication-key">Authentication Key</a>
+  <ul>
+    <li><a href="../protocol/key-creation.html#primitives">Primitives</a></li>
+    <li><a href="../protocol/key-creation.html#new-requesting-authentication-key">New Requesting Authentication Key</a></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2016</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="../lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="../js/magellan.js"></script>
+
+<style type="text/css">@import "../lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>Basic Principles of Federation protocol</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='Dialog SDK Documentation'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../js/page.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="../css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="../images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="../s2s/basic-principles.html" class="active">
+<span class="home-icon">⌂</span>Basic Principles of Federation protocol
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="../s2s/basic-principles.html" class="active">Basic Principles of Federation protocol</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="../s2s/basic-principles.html" class="active">
+<span class="home-icon">⌂</span>Basic Principles of Federation protocol
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#basic-principles-of-federation-protocol" name="basic-principles-of-federation-protocol" class="anchor"><span class="anchor-link"></span></a>Basic Principles of Federation protocol</h1>
+<p>Server-Server protocol is push-based protocol. This means that author (server) of a message is responsible to delivering it to receipient.</p>
+<p>Currently s2s ptorofol is based on HTTP/1.1. In future releases underlying transport can be replaced according with performance requiremenets of network.</p>
+<p>We found that our ideas are often the same as project <a href="http://matrix.org/docs/spec/r0.0.1/server_server.html">matrix.org</a> have. We believe that we can work together and enrich their&rsquo;s network with Actor. Draft version of our federation API is <strong>NOT</strong> compatable with matrix, but release one we expect to be one.</p>
+<p>Protocol is Protobuf-based, but can be easily transformed to any form of key-value format, for example, protobuf.</p>
+<h2><a href="#basic-requirements" name="basic-requirements" class="anchor"><span class="anchor-link"></span></a>Basic requirements</h2>
+<p>1) Server have port that is accessible in the internet 2) Server have TLS configured. We are highly recommend to use TLS 3) Owns domain name 4) Owner of a server have email server on this domain name (not explictly checked and can be reduced in future releases)</p>
+<h2><a href="#data-types" name="data-types" class="anchor"><span class="anchor-link"></span></a>Data Types</h2>
+<ul>
+  <li><strong>Server Address</strong> - Array of Host Names and ports for connecting to server. There are different ports for different transports.</li>
+  <li><strong>Strong Updates</strong> - updates that affects persistent state of a conversation or entyty. For example: new message, group member invite, user&rsquo;s avatar change, etc&hellip;</li>
+  <li><strong>Weak Updates</strong> - ephermal updates that is usually notification about temporary state and doesn&rsquo;t need to be stored in any offline storage. For example: typing notifications, online/offline notifications, etc&hellip;</li>
+  <li><strong>Requests</strong> - Abstract request-response from one server to another.</li>
+</ul>
+<h2><a href="#layers" name="layers" class="anchor"><span class="anchor-link"></span></a>Layers</h2>
+<p>As MTProto v2 server-server protocol is divided to layers.</p>
+<ul>
+  <li>Transport Level - Low Level transport protocol. Defines how requests made and updates delivered. HTTP/1.1 is used in this spec.</li>
+  <li>Protection Level - level that encrypt everything and checks data integrity. Not included in current draft.</li>
+  <li>Basic API level - API requests and update support. Defines how it is posslbe to make requests from server to server and how to receive updates even throught 3rd party servers.</li>
+</ul>
+<h2><a href="#basic-api-level" name="basic-api-level" class="anchor"><span class="anchor-link"></span></a>Basic API level</h2>
+<p>Basic API level have PUSH and RPC support. RPC and PUSH are both request-response entities with minor differences in how they work.</p>
+<h4><a href="#push" name="push" class="anchor"><span class="anchor-link"></span></a>Push</h4>
+<p>As we mentioned before, protocol is push-based and all responsibility of push delivery is on sender&rsquo;s side.</p>
+<pre class="prettyprint"><code class="language-json">{
+  &quot;weak&quot;: [
+    {
+      &quot;update&quot;: &quot;typing&quot;,
+      &quot;user_id&quot;: &quot;uid&quot;,
+      &quot;peer&quot;: {
+        &quot;type&quot;: &quot;group&quot;,
+        &quot;id&quot;: 11223344
+      }
+    }
+  ],
+  &quot;strong&quot;: [
+    {
+      &quot;update&quot;: &quot;message&quot;,
+      &quot;peer&quot;: {
+        &quot;type&quot;: &quot;group&quot;,
+        &quot;id&quot;: 11223344
+      },
+      &quot;content&quot;: {
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;text&quot;: &quot;Hello Wordl!&quot;
+      }
+    }
+  ],
+  &quot;seq&quot;: 234234
+}
+</code></pre>
+<p>Response OK</p>
+<pre class="prettyprint"><code class="language-json">{
+  &quot;receive&quot;: &quot;ok&quot;,
+  &quot;seq&quot;: 234234
+}
+</code></pre>
+<p>Response Hole Detected Response when in seq updates hole is detected. Sender need to resend all <strong>STRONG</strong> updates starting from returned seq.</p>
+<pre class="prettyprint"><code class="language-json">{
+  &quot;receive&quot;: &quot;hole_detected&quot;,
+  &quot;seq&quot;: 234234
+}
+</code></pre>
+<p>Response Wait Response when request need to be repeated in <code>wait</code> seconds</p>
+<pre class="prettyprint"><code class="language-json">{
+  &quot;receive&quot;: &quot;wait&quot;,
+  &quot;wait&quot;: 123
+}
+</code></pre>
+<h2><a href="#transport-level-https" name="transport-level-https" class="anchor"><span class="anchor-link"></span></a>Transport Level: HTTPS</h2>
+<p>Each server <strong>MUST</strong> support HTTPS transport. HTTPS transport is not RESTful API and just transport wrapper to our API.</p>
+<h4><a href="#making-requests" name="making-requests" class="anchor"><span class="anchor-link"></span></a>Making Requests</h4>
+<p>To make RPC request, server need to make a POST request to <code>/http/v1/rpc</code> with RPC json body.</p>
+<h4><a href="#delivering-updates" name="delivering-updates" class="anchor"><span class="anchor-link"></span></a>Delivering Updates</h4>
+<p>For delivering Update, server need to make a POST request to <code>/http/v1/updates</code> with Update JSON body in response server will return approriate JSON-ACK on this Update.</p>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../s2s/basic-principles.html#basic-principles-of-federation-protocol">Basic Principles of Federation protocol</a>
+  <ul>
+    <li><a href="../s2s/basic-principles.html#basic-requirements">Basic requirements</a></li>
+    <li><a href="../s2s/basic-principles.html#data-types">Data Types</a></li>
+    <li><a href="../s2s/basic-principles.html#layers">Layers</a></li>
+    <li><a href="../s2s/basic-principles.html#basic-api-level">Basic API level</a></li>
+    <li><a href="../s2s/basic-principles.html#transport-level-https">Transport Level: HTTPS</a></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2016</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="../lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="../js/magellan.js"></script>
+
+<style type="text/css">@import "../lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>

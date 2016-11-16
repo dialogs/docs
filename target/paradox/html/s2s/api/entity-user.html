@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>User Entity</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='Dialog SDK Documentation'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/page.js"></script>
+<link rel="stylesheet" type="text/css" href="../../lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="../../lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="../../images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="../../s2s/api/entity-user.html" class="active">
+<span class="home-icon">⌂</span>User Entity
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="../../s2s/api/entity-user.html" class="active">User Entity</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="../../s2s/api/entity-user.html" class="active">
+<span class="home-icon">⌂</span>User Entity
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#user-entity" name="user-entity" class="anchor"><span class="anchor-link"></span></a>User Entity</h1>
+<p>How Users are presented in API. Users are secured with Access Hashes.</p>
+<h2><a href="#definition" name="definition" class="anchor"><span class="anchor-link"></span></a>Definition</h2>
+<table>
+  <thead>
+    <tr>
+      <th>field </th>
+      <th>type </th>
+      <th>description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>*uid|int|User&rsquo;s ID| |*accessHash|string|Access Hash of a user| |*kind|string|Kind of a user: bot, human, service, etc&hellip;| |*name|string|Name of the user| |*avatar|Avatar|Avatar of the user| |*contacts|Contact[]|Contact information of the user| |username|string|Username of the user| |about|string|About text| |sex|Sex|Sex of the user| |timeZone|string|Timezone of the user| |preferredLangiages|string[]|Preferred languages|</td>
+    </tr>
+  </tbody>
+</table>
+<h2><a href="#example" name="example" class="anchor"><span class="anchor-link"></span></a>Example</h2>
+<pre class="prettyprint"><code class="language-json">{
+  &quot;uid&quot;: 1122334455,
+  &quot;accessHash&quot;: &quot;11223344556677889900&quot;,
+  &quot;isBot&quot;: false,
+  &quot;name&quot;: &quot;Steve&quot;,
+  &quot;avatar&quot;: null,
+  &quot;username&quot;: &quot;steve&quot;,
+  &quot;about&quot;: &quot;Founder of Actor&quot;,
+  &quot;contacts&quot;: [],
+  &quot;sex&quot;: null,
+  &quot;timeZone&quot;: &quot;UTC+0&quot;,
+  &quot;preferredLanguages&quot;: [&quot;en&quot;, &quot;us&quot;, &quot;zh&quot;, &quot;ar&quot;]
+}
+</code></pre>
+<h2><a href="#contact-object" name="contact-object" class="anchor"><span class="anchor-link"></span></a>Contact Object</h2>
+<pre class="prettyprint"><code class="language-json">{
+  &quot;contactType&quot;: &quot;phone|email|web|social&quot;,
+  &quot;typeSpec&quot;: &quot;mobile/standalone/home...&quot;,
+  &quot;value&quot;: &quot;75551112233&quot;,
+  &quot;title&quot;: &quot;My phone number&quot;,
+  &quot;subtitle&quot;: &quot;Call me only on mondays&quot;
+}
+</code></pre>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../../s2s/api/entity-user.html#user-entity">User Entity</a>
+  <ul>
+    <li><a href="../../s2s/api/entity-user.html#definition">Definition</a></li>
+    <li><a href="../../s2s/api/entity-user.html#example">Example</a></li>
+    <li><a href="../../s2s/api/entity-user.html#contact-object">Contact Object</a></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2016</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="../../lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="../../js/magellan.js"></script>
+
+<style type="text/css">@import "../../lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="../../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>

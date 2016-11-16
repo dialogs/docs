@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>Basic Sync Level</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='Dialog SDK Documentation'/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../js/page.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="../css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="../images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="../protocol/level-basic-sync.html" class="active">
+<span class="home-icon">⌂</span>Basic Sync Level
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="../protocol/level-basic-sync.html" class="active">Basic Sync Level</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="../protocol/level-basic-sync.html" class="active">
+<span class="home-icon">⌂</span>Basic Sync Level
+</a>
+<div class="version-number">
+0.1*
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#basic-sync-level" name="basic-sync-level" class="anchor"><span class="anchor-link"></span></a>Basic Sync Level</h1>
+<p>Basic syncronization support</p>
+<p>Raw protocol Rpc and Push provide only basic support and work only with untyped byte arrays, but for real application we need to implement something more detailed. Basic Sync Level is created for this.</p>
+<h3><a href="#rpc" name="rpc" class="anchor"><span class="anchor-link"></span></a>RPC</h3>
+<p>Basic Sync Level contains various wrappers for Rpc Requests and Response. This objects are encoded as body in ProtoRpcRequest/ProtoRpcResponse.</p>
+<pre class="prettyprint"><code>RpcRequest {
+    HEADER = 0x01
+    // ID of API Method Request
+    methodId: int
+    // Encoded Request
+    body: bytes
+}
+
+// Successful RPC
+RpcOk {
+    HEADER = 0x01
+    // ID of API Method Response
+    methodResponseId: int
+    // Encoded response
+    body: bytes
+}
+ 
+// RPC Error
+RpcError {
+    HEADER = 0x02
+    // Error Code like HTTP Error code
+    errorCode: int
+    // Error Tag like &quot;ACCESS_DENIED&quot;
+    errorTag: string
+    // User visible error
+    userMessage: string
+    // Can user try again
+    canTryAgain: bool
+    // Some additional data of error
+    errorData: bytes
+}
+ 
+// RPC Flood Control. 
+// Client need to repeat request after delay
+RpcFloodWait {
+    HEADER = 0x03
+    // Repeat delay on seconds
+    delay: int
+}
+ 
+// Internal Server Error
+// Client may try to resend message
+RpcInternalError {
+    HEADER = 0x04
+    canTryAgain: bool
+    tryAgainDelay: int
+}
+</code></pre>
+<h2><a href="#push" name="push" class="anchor"><span class="anchor-link"></span></a>Push</h2>
+<p>Basic Sync Level contains wrapper for Push. This objects are encoded as body in ProtoPush.</p>
+<pre class="prettyprint"><code>Push {
+	// Push Entity Id
+	updateId: int
+  // Encoded Push body
+	body: bytes
+}
+</code></pre>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../protocol/level-basic-sync.html#basic-sync-level">Basic Sync Level</a>
+  <ul>
+    <li><a href="../protocol/level-basic-sync.html#rpc">RPC</a></li>
+    <li><a href="../protocol/level-basic-sync.html#push">Push</a></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2016</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="../lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="../js/magellan.js"></script>
+
+<style type="text/css">@import "../lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+
+</html>
