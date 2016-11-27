@@ -6,23 +6,12 @@
 Welcome to Dialog documentation!
 ======================================
 
-Contents:
 
-.. toctree::
-   :maxdepth: 2
-
-   android
-   ios
-   web
-   server
-   protocol
 
 
 
 Indices and tables
 ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
 
