@@ -6,8 +6,12 @@
 Welcome to Dialog documentation!
 ======================================
 
+Contents:
 
-
+* `Api Documentation <api/current>`_
+* `Android SDK <api/current>`_
+* `iOS SDK <api/current>`_
+* `Web SDK <api/current>`_
 
 
 Indices and tables
