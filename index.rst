@@ -9,9 +9,9 @@ Welcome to Dialog documentation!
 Contents:
 
 * `Api <api/current>`_
-* `Android SDK <api/current>`_
-* `iOS SDK <api/current>`_
-* `Web SDK <api/current>`_
+* `Android SDK <android-sdk/current>`_
+* `iOS SDK <ios-sdk/current>`_
+* `Web SDK <web-sdk/current>`_
 
 
 Indices and tables
