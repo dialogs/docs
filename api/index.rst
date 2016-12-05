@@ -1,10 +1,8 @@
 API
 ===========
 
-.. todo::
-	Describe RPC over MQTT
-
 .. toctree::
 	
-	api/device
-	api/e2e
+	rpc
+	device
+	e2e
