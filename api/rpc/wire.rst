@@ -67,8 +67,10 @@ Response is delivered the same way as Request and has the following structure:
 	:language: protobuf
 	:lines: 12-16
 
-As discussed above, ``correlation_id`` field is used to indicate that this response belongs to a Request with the same ``correlation_id``.
+As discussed above, ``correlation_id`` field is used to indicate that this response belongs to a Request with the same ``correlation_id``. 
+Like Request, ``eos`` field marks response as a final response of streamed response. For non-streamed responses ``eos`` field is not being taken into account. 
+``body contains`` serialized request body.
 
-Like Request, ``eos`` field marks response as a final response of streamed response. For non-streamed responses ``eos`` field is not being taken into account.
+.. note:: We don't need **Any** with its ``typeUrl`` here because Response type is alredy defined in service schema
 
 .. todo:: Error reporting
