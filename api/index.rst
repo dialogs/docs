@@ -2,9 +2,9 @@ Dialog Client-Server API
 ===========
 
 In Dialog Platform, Client communicates to server using MQTT protocol version 3.1.1.
-Besides simple MQTT publish/subscribe Dialog utilizes RPC (Remote Procedure Call) implemented on top of MQTT.
+Beside simple MQTT publish/subscribe Dialog utilizes RPC (Remote Procedure Call) implemented on top of MQTT.
 
-This document contains whitepaper of RPC over MQTT as well as high-level design of client-server communication in each Dialog Platform module.
+This document contains a white paper of RPC over MQTT and high-level design of client-server communication in each Dialog Platform module.
 
 .. toctree::
 
