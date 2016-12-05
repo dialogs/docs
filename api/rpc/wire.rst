@@ -71,6 +71,6 @@ As discussed above, ``correlation_id`` field is used to indicate that this respo
 Like Request, ``eos`` field marks response as a final response of streamed response. For non-streamed responses ``eos`` field is not being taken into account. 
 ``body contains`` serialized request body.
 
-.. note:: We don't need **Any** with its ``typeUrl`` here because Response type is alredy defined in service schema
+.. note:: We don't need **Any** with its ``typeUrl`` here because Response type is alredy defined in service schema.
 
 .. todo:: Error reporting
