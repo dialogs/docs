@@ -65,7 +65,7 @@ Response is delivered the same way as Request and has the following structure:
 
 .. literalinclude:: /schema/common.proto
 	:language: protobuf
-	:lines: 12-15
+	:lines: 12-16
 
 As discussed above, ``correlation_id`` field is used to indicate that this response belongs to a Request with the same ``correlation_id``.
 
