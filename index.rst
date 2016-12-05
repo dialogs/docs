@@ -8,10 +8,10 @@ Welcome to Dialog documentation!
 
 Contents:
 
-* `Api <api/>`_
-* `Android SDK <android-sdk/>`_
-* `iOS SDK <ios-sdk/>`_
-* `Web SDK <web-sdk/>`_
+* `Api <api/current>`_
+* `Android SDK <android-sdk/current>`_
+* `iOS SDK <ios-sdk/current>`_
+* `Web SDK <web-sdk/current>`_
 
 
 Indices and tables
