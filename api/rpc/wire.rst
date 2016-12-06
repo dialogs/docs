@@ -9,15 +9,17 @@ Outline
 
 The following is the general sequence of message atoms in a RPC request & response message stream
 
-* Request → EOS
-* Response → EOS
+* Request[eos=true] [→ Request[eos=true] ]
+* Response[eos=true] [→ Response[eos=true] ]
 
 Request and response must go to the same topic. Commonly topic name matches a service name described in gRPC way.
+
+.. note:: ``eos`` meaning will be described below
 
 Requests
 --------
 
-* Request → EOS
+* Request[eos=true] [→ Request[eos=true] ]
 
 *Request* is delivered as an MQTT message serialized with protobuf and has the following structure:
 
@@ -55,7 +57,7 @@ If we see an unknown ``correlation_id`` value, we may safely discard the message
 Responses
 ---------
 
-* Response → EOS
+* Response[eos=true] [→ Response[eos=true] ]
 
 *Response* is delivered the same way as *Request* and has the following structure:
 
