@@ -34,7 +34,7 @@ So for service defined like this:
 
 request may go to ``/my-cool-service`` with body ``typeUrl`` equal to ``SayHello`` and body value equal to serialized ``HelloRequest``.
 
-.. todo:: Define a convention of naming header according to a service name.
+.. todo:: Define a naming convention of topic according to service name.
 
 ``shortcut`` is optional and serves as a shortcut to a method name. If header is defined and both client and server know that such shortcut relates to a specific method name it's allowed to not define body ``typeUrl``. This technic allows to save some bytes send on the wire for frequent requests.
 
