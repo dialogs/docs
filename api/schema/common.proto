@@ -28,4 +28,5 @@ message ErrorData {
 	uint32 code = 1;
 	string tag = 2;
 	string user_message = 3;
+	uint32 retry_after = 4;
 }

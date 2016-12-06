@@ -67,6 +67,8 @@ As discussed above, ``correlation_id`` field is used to indicate that this respo
 Like in *Request*, ``eos`` field marks response as a final *Response* of streamed response. For non-streamed responses ``eos`` field is not being taken into account. 
 In case of successful *Response* ``body`` ``value`` field should contain serialized request body. ``typeUrl`` is not required for successful response because response type is already defined in service schema.
 
-In case of error ``error_data`` field should be present. Its ``code`` should follow `HTTP Status Codes <http://www.restapitutorial.com/httpstatuscodes.html>`_ convention, ``tag`` is used to uniquely identify common errors for custom handling on client-side, ``user_message`` is a text to be show to a user when custom error handler is absent. Optionally *Response* body can be filled with additional error data needed for custom client-side error handling.
+In case of error ``error_data`` field should be present. Its ``code`` should follow `HTTP Status Codes <http://www.restapitutorial.com/httpstatuscodes.html>`_ convention, ``tag`` is used to uniquely identify common errors for custom handling on client-side, ``user_message`` is a text to be show to a user when custom error handler is absent. ``retry_after`` field specifies duration after which it is safe to retry request. Retry unit is millisecond. If ``retry_after`` value is zero, retry is not allowed.
 
-.. todo:: Retry policy
+.. note::
+
+	Optionally *Response* body can be filled with additional error data needed for custom client-side error handling.
