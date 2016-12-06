@@ -50,7 +50,7 @@ If we see an unknown ``correlation_id`` value, we may safely discard the message
 
 ``timeout`` indicates that the request should be handed in the specified duration of time. If not present, server uses default timeout specified in it's own settings.
 
-``timeout_unit`` tells in which unit ``timeout`` is measured. Possible values are ``Hour``, ``Minute``, ``Second``, ``Millisecond``.
+``timeout_unit`` tells in which unit ``timeout`` is measured. Possible values are ``Hour``, ``Minute``, ``Second``, ``Millisecond``. Default unit is ``Millisecond``.
 
 Responses
 ---------
