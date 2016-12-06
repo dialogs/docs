@@ -61,7 +61,7 @@ Responses
 
 .. literalinclude:: /schema/common.proto
 	:language: protobuf
-	:lines: 20-31
+	:lines: 20-32
 
 As discussed above, ``correlation_id`` field is used to indicate that this response belongs to a request with the same ``correlation_id``. 
 Like in *Request*, ``eos`` field marks response as a final *Response* of streamed response. For non-streamed responses ``eos`` field is not being taken into account. 
