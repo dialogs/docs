@@ -13,13 +13,19 @@ message Request {
 	correlation_id = 1;
 	google.protobuf.Any body = 2;
 	bool eos = 3;
-	uint32 shortcut = 4;
 	uint32 timeout = 5;
 	TimeoutUnit timeout_unit = 6;
 }
 
 message Response {
-	uint32 correlation_id = 1;
-	bytes value = 2;
-	bool eos = 3;
+	uint32 correlation_id = 1;	
+	google.protobuf.Any body = 2;
+	ErrorData error_data = 3;
+	bool eos = 4;
+}
+
+message ErrorData {
+	uint32 code = 1;
+	string tag = 2;
+	string user_message = 3;
 }

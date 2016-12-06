@@ -23,7 +23,7 @@ Request is delivered as an MQTT message serialized with protobuf and has the fol
 
 .. literalinclude:: /schema/common.proto
 	:language: protobuf
-	:lines: 12-19
+	:lines: 12-18
 
 ``body`` as an `Any <https://developers.google.com/protocol-buffers/docs/proto3#any>`_ type. 
 Its ``typeUrl`` field should match method name and value should be a serialized request body.
@@ -35,10 +35,6 @@ So for service defined like this:
 request may go to ``/my-cool-service`` with body ``typeUrl`` equal to ``SayHello`` and body value equal to serialized ``HelloRequest``.
 
 .. todo:: Define a naming convention of topic according to service name.
-
-``shortcut`` is optional and serves as a shortcut to a method name. If header is defined and both client and server know that such shortcut relates to a specific method name it's allowed to not define body ``typeUrl``. This technic allows to save some bytes send on the wire for frequent requests.
-
-.. todo:: shortcut example
 
 For requests, ``eos`` (end-of-stream) is indicated by the presence of the ``eos`` flag of the last received ``Request``.
 Setting ``eos`` to false assumes that client will send the next request of the same type as part of streamed Request.
@@ -65,12 +61,12 @@ Response is delivered the same way as Request and has the following structure:
 
 .. literalinclude:: /schema/common.proto
 	:language: protobuf
-	:lines: 12-16
+	:lines: 20-31
 
 As discussed above, ``correlation_id`` field is used to indicate that this response belongs to a Request with the same ``correlation_id``. 
 Like Request, ``eos`` field marks response as a final response of streamed response. For non-streamed responses ``eos`` field is not being taken into account. 
-``body contains`` serialized request body.
+In case of successful response ``body`` ``value`` field should contain serialized request body. ``typeUrl`` is not required for successful response because response type is already defined in service schema.
 
-.. note:: We don't need **Any** with its ``typeUrl`` here because Response type is alredy defined in service schema.
+In case of error ``error_data`` field should be present. Its ``code`` should follow `HTTP Status Codes <http://www.restapitutorial.com/httpstatuscodes.html>`_ convention, ``tag`` is used to uniquely identify common errors for custom handling on client-side, ``user_message`` is a text to be show to a user when custom error handler is absent. Optionally **Response** body can be filled with additional error data needed for custom client-side error handling.
 
-.. todo:: Error reporting
+.. todo:: Retry policy
