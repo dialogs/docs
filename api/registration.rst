@@ -1,4 +1,4 @@
-Registration
+Device Registration
 =======
 
 Right after instalation client should register itself on the server.
