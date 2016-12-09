@@ -9,5 +9,5 @@ This document contains a white paper of RPC over MQTT and high-level design of c
 .. toctree::
 
 	rpc
-	device
+	registration
 	e2e
