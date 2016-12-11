@@ -6,3 +6,4 @@ RPC over MQTT
   rpc/definition-language
   rpc/api-surface
   rpc/wire
+  rpc/server
