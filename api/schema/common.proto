@@ -11,8 +11,9 @@ enum TimeoutUnit {
 
 message Request {
 	uint64 correlation_id = 1;
-	google.protobuf.Any body = 2;
-	bool eos = 3;
+	string service = 2;
+	google.protobuf.Any body = 3;
+	bool eos = 4;
 	uint32 timeout = 5;
 	TimeoutUnit timeout_unit = 6;
 }
