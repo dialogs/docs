@@ -34,7 +34,7 @@ So for service defined like this:
 
 .. literalinclude:: /schema/examples/simple-rpc.proto
 
-**Request** usually go to topic named ``<client token>/rpc/<service_name>`` with body ``typeUrl`` equal to ``SayHello`` and body value equal to serialized ``HelloRequest``.
+**Request** usually go to topic named ``<ClientId>/rpc/<ServiceName>`` with body ``typeUrl`` equal to ``SayHello`` and body value equal to serialized ``HelloRequest``.
 
 For *Request*, ``eos`` (end-of-stream) is indicated by the presence of the ``eos`` flag of the last received *Request*.
 Setting ``eos`` to false assumes that client will send the next *Request* of the same type as part of streamed request.
