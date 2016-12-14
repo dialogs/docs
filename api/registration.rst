@@ -41,11 +41,18 @@ Secure way of generating a ClientId in Swift:
 	    return randomString
 	}
 
-The next step is to introduce yourself to server. Client makes a **Handshake** request to topic *ClientId*/registration. Server responds with an unique client token which should be used as a password for further sessions.
+The next step is to introduce yourself to server. Client makes a **Handshake** request to topic *ClientId*/registration. Server responds with an unique client token which should be used as a *Password* MQTT option for further sessions.
 
 After device registration client have to create new session.
 
 .. warning:: Both ClientId and token should be stored in a secured persistent storage.
+
+.. warning::
+
+	Server should be configured to hook up client connection and allow connection on one of the following conditions:
+
+	1. *ClientId* is not registered on server, this is the new client going to register
+	2. *ClientId* is registered on server, token is present in *Password* field and valid for this *ClientId*
 
 .. literalinclude:: /schema/registration.proto
 	:language: protobuf
