@@ -3,11 +3,49 @@ Device Registration
 
 Right after instalation client should register itself on the server.
 
-First of all client should geenrate a randomly-generated UUID and use it as a ClientId field of all MQTT sessions.
+First of all client should geenrate a randomly generated string. It should consist of 32 characters from set [a-zA-Z0-9]. This string then shoud aways been used as an MQTT ClientId.
 
-The next step is to introduce yourself to server. Client makes a **Handshake** request to topic *ClientId*/registration. Server responds with an unique client token which should be used as a prefix for all topics which are restricted to this client only.
+Secure way of generating a ClientId in Java:
 
-.. warning:: Both clientId and token should be stored in a secured persistent storage.
+.. code-block:: java
+
+	static final String AB = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	static SecureRandom rnd = new SecureRandom();
+
+	String randomString(int len) {
+	   StringBuilder sb = new StringBuilder(len);
+	   
+	   for(int i = 0; i < len; i++) 
+	      sb.append(AB.charAt(rnd.nextInt(AB.length())));
+
+	   return sb.toString();
+	}
+
+Secure way of generating a ClientId in Swift:
+
+.. code-block:: swift
+
+	func randomString(length: Int) -> String {
+
+	    let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	    let len = UInt32(letters.length)
+
+	    var randomString = ""
+
+	    for _ in 0 ..< length {
+	        let rand = arc4random_uniform(len)
+	        var nextChar = letters.character(at: Int(rand))
+	        randomString += NSString(characters: &nextChar, length: 1) as String
+	    }
+
+	    return randomString
+	}
+
+The next step is to introduce yourself to server. Client makes a **Handshake** request to topic *ClientId*/registration. Server responds with an unique client token which should be used as a password for further sessions.
+
+After device registration client have to create new session.
+
+.. warning:: Both ClientId and token should be stored in a secured persistent storage.
 
 .. literalinclude:: /schema/registration.proto
 	:language: protobuf
