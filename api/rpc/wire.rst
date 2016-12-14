@@ -34,7 +34,7 @@ So for service defined like this:
 
 .. literalinclude:: /schema/examples/simple-rpc.proto
 
-**Request** usually go to topic named ``<ClientId>/rpc/<ServiceName>`` with body ``typeUrl`` equal to ``SayHello`` and body value equal to serialized ``HelloRequest``.
+**Request** usually go to topic named ``<ServiceName>/rpc`` with body ``typeUrl`` equal to ``SayHello`` and body value equal to serialized ``HelloRequest``.
 
 For *Request*, ``eos`` (end-of-stream) is indicated by the presence of the ``eos`` flag of the last received *Request*.
 Setting ``eos`` to false assumes that client will send the next *Request* of the same type as part of streamed request.
@@ -62,6 +62,8 @@ Responses
 .. literalinclude:: /schema/common.proto
 	:language: protobuf
 	:lines: 20-32
+
+*Response* usually goes to a topic named ``<ClientId>/rpc``. Client **should** subscribe to this topic before making any *Request*.
 
 As discussed above, ``correlation_id`` field is used to indicate that this response belongs to a request with the same ``correlation_id``. 
 Like in *Request*, ``eos`` field marks response as a final *Response* of streamed response. For non-streamed responses ``eos`` field is not being taken into account. 
