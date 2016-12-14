@@ -45,6 +45,8 @@ The next step is to introduce yourself to server. Client makes a **Handshake** r
 
 After device registration client have to create new session.
 
+.. todo:: Describe case when client generates id already taken by another client
+
 .. warning:: Both ClientId and token should be stored in a secured persistent storage.
 
 .. warning::
