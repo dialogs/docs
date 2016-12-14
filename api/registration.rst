@@ -3,7 +3,7 @@ Device Registration
 
 Right after instalation client should register itself on the server.
 
-First of all client should geenrate a randomly generated string. It should consist of 32 characters from set [a-zA-Z0-9]. This string then shoud aways been used as an MQTT ClientId.
+First of all client should geenrate a randomly generated string. It should consist of 32 characters from set ``[a-zA-Z0-9]``. This string then shoud aways been used as an MQTT ClientId.
 
 Secure way of generating a ClientId in Java:
 
