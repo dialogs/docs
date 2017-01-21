@@ -25,7 +25,7 @@ You can specify them directly in the gradle file (albeit not recommended) or in 
     bintrayUser=$bamboo_bintray_user
     bintrayPassword=$bamboo_bintray_password
 
-Having the repository set up, you should add these lines into the :code:`dependencies` section:
+Having the repository set up, you should add these lines into the :code:`dependencies` section of your gradle file:
 
 .. code-block:: groovy
 
