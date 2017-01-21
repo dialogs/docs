@@ -34,3 +34,5 @@ Having the repository set up, you should add these lines into the :code:`depende
     compile "im.dlg:android-google-maps:${dialogSdkVersion}"
 
 Please use the actual version number instead of :code:`${dialogSdkVersion}`.
+
+.. todo:: Describe proguard configuration
