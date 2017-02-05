@@ -5,4 +5,3 @@ Android SDK
 
 	including-in-your-project
   configuring-ui
-  

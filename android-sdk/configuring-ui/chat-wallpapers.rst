@@ -5,11 +5,11 @@ DialogSDK allows user to select chat wallpaper (much like Viber or Telegram).
 
 If you want to customize default image set in your application, you can use :code:`setDefaultBackgrounds` method from Dialog Style:
 
-.. code-black:: java
+.. code-block:: java
 
     DialogSDK.get().style.setDefaultBackgrounds(R.drawable.bg_1, R.drawable.bg_2, R.drawable.bg_3);
 
-where :code:`R.drawable.bg_1, R.drawable.bg_2, R.drawable.bg_3` are the references to resource files as per android documentation.
+where :code:`R.drawable.bg_1, R.drawable.bg_2, R.drawable.bg_3` are the references to resource files as per `android documentation <https://developer.android.com/guide/topics/resources/providing-resources.html>`_.
 
 Image resources should be of the following sizes:
 
@@ -20,13 +20,14 @@ Image resources should be of the following sizes:
 * XXHDPI: 1600x1600
 * XXXHDPI: 1920x1920
 
+**************************
 Disabling Wallpaper Picker
-==========================
+**************************
 
 You can however disable this preference completely in your application, hiding it from the settings menu.
 
 All you need to do is to provide *only one* drawable resource to the :code:`setDefaultBackgrounds` method:
 
-.. code-black:: java
+.. code-block:: java
 
     DialogSDK.get().style.setDefaultBackgrounds(R.drawable.bg_1);
