@@ -17,7 +17,7 @@ Please add the following lines into :code:`repositories` section of your gradle 
 
 Our SDK repository is private, so you need to obtain correct credentials from our developers.
 
-You can specify them directly in the gradle file (albeit not recommended) or in the special file called
+You can specify them directly in the gradle file (albeit it is not recommended) or in the special file called
 :code:`gradle.properties` in the root of your gradle project (create it if it does not exist):
 
 .. code-block:: groovy
