@@ -20,10 +20,6 @@ Image resources should be of the following sizes:
 * XXHDPI: 1600x1600
 * XXXHDPI: 1920x1920
 
-**************************
-Disabling Wallpaper Picker
-**************************
-
 You can however disable this preference completely in your application, hiding it from the settings menu.
 
 All you need to do is to provide *only one* drawable resource to the :code:`setDefaultBackgrounds` method:
