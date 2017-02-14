@@ -4,7 +4,6 @@ Creating a new call
 The call begins with sending a :code:`rpc DoCall` request:
 
 .. code-block:: protobuf
-
 	rpc DoCall(OutPeer peer, msec timeout) returns (int64 callId, busId eventBusId, randomId deviceId) {
 	}
 

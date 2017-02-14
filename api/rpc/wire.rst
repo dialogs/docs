@@ -23,16 +23,16 @@ Requests
 
 *Request* is delivered as an MQTT message serialized with protobuf and has the following structure:
 
-.. literalinclude:: /schema/common.proto
+.. literalinclude:: /api/schema/common.proto
 	:language: protobuf
-	:lines: 12-18
+	:lines: 12-19
 
 ``body`` as an `Any <https://developers.google.com/protocol-buffers/docs/proto3#any>`_ type. 
 Its ``typeUrl`` field should match method name and value should be a serialized request body.
 
 So for service defined like this:
 
-.. literalinclude:: /schema/examples/simple-rpc.proto
+.. literalinclude:: /api/schema/examples/simple-rpc.proto
 
 **Request** usually go to topic named ``<ClientId>/<ServiceName>/rq`` with body ``typeUrl`` equal to ``SayHello`` and body value equal to serialized ``HelloRequest``.
 
@@ -59,7 +59,7 @@ Responses
 
 *Response* is delivered the same way as *Request* and has the following structure:
 
-.. literalinclude:: /schema/common.proto
+.. literalinclude:: /api/schema/common.proto
 	:language: protobuf
 	:lines: 20-32
 

@@ -64,7 +64,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-copyright = u'2016, Dialog LLC'
+copyright = u'2017, Dialog LLC'
 author = u'Dialog LLC'
 
 # The version info for the project you're documenting, acts as replacement for

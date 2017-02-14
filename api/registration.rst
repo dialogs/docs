@@ -1,5 +1,5 @@
 Device Registration
-=======
+===================
 
 Right after instalation client should register itself on the server.
 
@@ -56,5 +56,5 @@ After device registration client have to create new session.
 	1. *ClientId* is not registered on server, this is the new client going to register
 	2. *ClientId* is registered on server, token is present in *Password* field and valid for this *ClientId*
 
-.. literalinclude:: /schema/registration.proto
+.. literalinclude:: /api/schema/registration.proto
 	:language: protobuf

@@ -4,7 +4,7 @@ Definition language
 RPC over MQTT is based around the idea of defining a service, specifying the methods that can be called remotely with their parameters and return types.
 Dialog uses `protocol buffers <https://developers.google.com/protocol-buffers/>`_ as the Interface Definition Language (IDL) for describing both the service interface and the structure of the payload messages (`gRPC-style <https://grpc.io>`_).
 
-.. literalinclude:: /schema/examples/simple-rpc.proto
+.. literalinclude:: /api/schema/examples/simple-rpc.proto
 
 gRPC lets you define four kinds of service method:
 

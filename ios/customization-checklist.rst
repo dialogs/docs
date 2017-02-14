@@ -1,8 +1,7 @@
-iOS SDK
-=======
+Basic customization checklist
+-----------------------------
 
 To make basic customization of Dialog SDK, you will need:
-_________________________________________________________
 
 * iOS app title;
 * iOS app icons set;
