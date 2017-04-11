@@ -70,7 +70,7 @@ Edit the /etc/asterisk/rtp.conf file:
    icesupport=yes
    stunaddr=stun.l.google.com:19302
 
-Edit the /etc/asterisk/sip.conf file (replace the realm with your actual domain name or ip address)
+The setup for the dialog clients will be familiar to those who have configured Asterisk to support WebRTC. You can reuse your webrtc config. Edit the /etc/asterisk/sip.conf file (replace the realm with your actual domain name or ip address)
 
 .. code-block:: bash
 
@@ -79,39 +79,24 @@ Edit the /etc/asterisk/sip.conf file (replace the realm with your actual domain 
    realm=sip.dialog.im
    transport=udp,ws
 
-   [sip](!)
-   disallow=all
-   allow=ulaw,alaw,vp8,h264,h263p,mpeg4
+   [dialog](!)
    host=dynamic
-   context=from-internal
    type=friend
-
-   [webrtc](!)
-   host=dynamic
    context=from-internal
-   type=friend
-   encryption=yes
    avpf=yes
-   force_avp=yes
    icesupport=yes
-   nat=force_rport,comedia
-   directmedia=no
-   disallow=all
-   qualify=yes
-   videosupport=yes
-   allow=ulaw,alaw,vp8,h264,h263p,mpeg4
    dtlsenable=yes
    dtlsverify=no
    dtlscertfile=/etc/asterisk/keys/asterisk.pem
    dtlscafile=/etc/asterisk/keys/ca.crt
    dtlssetup=actpass
 
-   [8000](webrtc)
-   defaultusername=8000
+   [8000](dialog)
+   username=8000
    secret=8000
 
-   [8001](webrtc)
-   defaultusername=8001
+   [8001](dialog)
+   username=8001
    secret=8001
 
 Edit the /etc/asterisk/etensions.conf file:
