@@ -4,4 +4,4 @@ iOS SDK
 .. toctree::
 	ios/overview
 	ios/quick-start-guide
-	ios/basic-customization-checklist
+	ios/sdk-customization-checklist
