@@ -2,6 +2,6 @@ iOS SDK
 =======
 
 .. toctree::
-	:glob:
-
-	ios/*
+	ios/overview
+	ios/quick-start-guide
+	ios/basic-customization-checklist

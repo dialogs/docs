@@ -1,5 +1,7 @@
+.. _basic-customization-checklist-ios-label:
+
 Basic customization checklist
------------------------------
+=============================
 
 To make basic customization of Dialog SDK, you will need:
 
