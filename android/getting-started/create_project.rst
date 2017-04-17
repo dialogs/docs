@@ -2,19 +2,19 @@ Create new project
 ========================
 
 Download or clone Sdk repository:
-``https://bitbucket.transmit.im/projects/DLG/repos/repository_name/``
+
+.. code-block:: html
+
+	https://bitbucket.transmit.im/projects/DLG/repos/repository_name/
 
 For better performance, we highly recommend to use Android Studio.
-
-Create new project (File - New - New Project). 
-
-Minimum supported SDK 14+ 
 
 
 Gradle setup
 -------
 
-Add the following lines into :code:`repositories` section of your gradle file:
+First, create new project (File - New - New Project) , then add the following
+lines into :code:`repositories` section of your gradle file:
 
 .. code-block:: groovy
 
