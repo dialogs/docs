@@ -49,6 +49,8 @@ dialog SDK supports high-quality calls and secure push notifications. To enable 
    :width: 600 px
    :align: center
 
+Pre-ensure that push notifications service and certificates are enabled for your **App ID** (see the section :ref:`Application services and certificates <application-services-and-certificates-ios-label>` for more details).
+
 Permission usage descriptions
 ------------------------------
 
