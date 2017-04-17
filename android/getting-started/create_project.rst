@@ -1,12 +1,6 @@
 Create new project
 ==================
 
-Download or clone Sdk repository:
-
-.. code-block:: html
-
-	https://bitbucket.transmit.im/projects/DLG/repos/repository_name/
-
 For better performance, we highly recommend to use Android Studio.
 
 
@@ -18,13 +12,18 @@ lines into :code:`repositories` section of your gradle file:
 
 .. code-block:: groovy
 
-    maven {
-        url "http://dialog.bintray.com/android-sdk"
-        credentials {
-            username bintrayUser
-            password bintrayPassword
-        }
-    }
+	allprojects {
+	    repositories {
+	        jcenter()
+	        maven {
+	            url "http://dialog.bintray.com/android-sdk"
+	            credentials {
+	                username bintrayUser
+	                password bintrayPassword
+	            }
+	        }
+	    }
+	}
 
 .. note::
 	Our SDK repository is private, so you need to obtain correct credentials for authorization from our developers.
@@ -61,7 +60,7 @@ Set up Application class
 
 Now, create application class in your source set directory (java/kotlin) and inherit it from ``DialogSDKApplication``.
 This class class include MultiDex support and ``ConfigurationBuilder``
-initialization (such as platform type, time zone, notification provider etc.).
+initialization (such as platform type, time zone, notification provider etc.). Don't forget to add class in AndroidManifest.
 
 ``Application.java`` example:
 
@@ -79,4 +78,4 @@ initialization (such as platform type, time zone, notification provider etc.).
 Almost done!
 
 For server and other flexible settings, such as app calls, pushes, delegates and more,
-please visit :ref:`app configuration section <basic_configuration>` next.
+please visit :ref:`app configuration section <basic_configuration>` .

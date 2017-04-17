@@ -87,6 +87,67 @@ Secondary parameters:
 	    }
 	}
 
+Start activity
+--------------
+
+There are two prepared classes in SDK: 
+
+-  ``im.dlg.sdk.MainActivity``, from which app starts 
+-  ``im.dlg.sdk.DefaultStartActivity``, which corresponds to start screen 
+
+However, you should specify MainActivity with intent-filter in ``AndroidManifest`` of your app as default one .
+
+.. code-block:: xml
+
+	    <activity
+	        android:name="im.sdk.MainActivity" 
+	        android:label="@string/app_name">
+		    <intent-filter>
+            	<action android:name="android.intent.action.MAIN" />
+            	<category android:name="android.intent.category.LAUNCHER" />
+        	</intent-filter>
+		</activity>
+
+In case, when you implement your own StartActivity (let it be tutorial, for example), MainActivity should be custom too,
+it's necessary to override default onCreate behaviour for proper navigation.
+
+Custom MainActivity example:
+
+.. code-block:: java
+
+	public class MainActivity extends BaseActivity {
+	    @Override
+	    protected void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        DialogSDK.get().waitForReady();
+
+	        // check whether auth was completed (AuthState.LOGGED_IN)
+	        if (!messenger().isLoggedIn()) {
+	            startActivity(new Intent(this, YourStartActivity.class));
+	            finish();
+	            return;
+	        }
+
+	        DialogSDK.get().startMessagingActivity(this);
+	        finish();
+	    }
+	}	
+		
+
+DefaultStartActivity include some helper methods from BaseActivity :
+
++-------------------------------+---------------------------------------------+
+| setStatusBarTranslucentFlag() | set FLAG_TRANSLUCENT_STATUS flag to window  |
++-------------------------------+---------------------------------------------+
+| setStatusBarTransparent()     | transparent status bar with toolbar padding |
++-------------------------------+---------------------------------------------+
+| getStatusBarHeight()          | get status_bar_height identifier in pixels  |
++-------------------------------+---------------------------------------------+
+| DialogBinder BINDER           | helper to bind views with listeners         |
++-------------------------------+---------------------------------------------+
+
+Next stage after start screen should lead to ``AuthActivity`` through intent.
+
 
 Deep links
 ----------
@@ -96,7 +157,7 @@ Provide scheme for external deep links, which served for navigate to a certain c
 .. code-block:: xml
 
 	<activity
-            android:name=".MainActivity"
+            android:name="im.sdk.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme">
@@ -113,25 +174,6 @@ Provide scheme for external deep links, which served for navigate to a certain c
                 <data android:scheme="YOUR_SCHEME" />
             </intent-filter>
         </activity>
-
-
-Start activity
---------------
-
-You can add custom start activity and specify it in AndroidManifest or use (or extend) existing one - ``DefaultStartActivity``.
-This class include some helper methods from BaseActivity :
-
-+-------------------------------+---------------------------------------------+
-| setStatusBarTranslucentFlag() | set FLAG_TRANSLUCENT_STATUS flag to window  |
-+-------------------------------+---------------------------------------------+
-| setStatusBarTransparent()     | transparent status bar with toolbar padding |
-+-------------------------------+---------------------------------------------+
-| getStatusBarHeight()          | get status_bar_height identifier in pixels  |
-+-------------------------------+---------------------------------------------+
-| DialogBinder BINDER           | helper to bind views with listeners         |
-+-------------------------------+---------------------------------------------+
-
-Start button should lead to ``AuthActivity`` through intent.
 
 
 Google services
