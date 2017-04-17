@@ -9,8 +9,6 @@ For the full operation of the dialog SDK, you need a number settings and of user
    :width: 309 px
    :align: center
 
-Some settings are necessary to pass a review in the App Store.
-
 
 Custom URL scheme
 -----------------
@@ -21,7 +19,7 @@ Custom URL-scheme is necessary for correct work with the invitation links (see t
 
     mymessenger://mycompany.com/joinChat?shortname=coolChannel
 
-then he can immediately open a coolChannel chat in the messenger. To do this, you need to set the following values in **Info.plist**:
+he can immediately open a coolChannel chat in the messenger. To do this, you need to set the following values in **Info.plist**:
 
 .. code-block:: xml
 
@@ -51,10 +49,25 @@ dialog SDK supports high-quality calls and secure push notifications. To enable 
 
 Pre-ensure that push notifications service and certificates are enabled for your **App ID** (see the section :ref:`Application services and certificates <application-services-and-certificates-ios-label>` for more details).
 
-Permission usage descriptions
-------------------------------
 
-sorry, the section is under construction
+Usage descriptions
+------------------
+
+Usage descriptions are necessary to pass a review in the App Store. These values show user why the app ask certain user permissions. dialog SDK requires permissions for camera, contacts, location, microphone and photo library:
+
+.. code-block:: xml
+
+    <key>NSCameraUsageDescription</key>
+    <string>Camera let you to send photos to the chat directly.</string>
+    <key>NSContactsUsageDescription</key>
+    <string>We will process your data at our server to import your contacts automatically.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>You will be able to share your location in a chat.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Microphone is used for calls and voice messages.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>You will be able to send photos to the chat directly.</string>
+
 
 Slyle
 -----
