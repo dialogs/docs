@@ -4,4 +4,6 @@ Android SDK
 .. toctree::
 	:glob:
 
-	android/*
+	android/getting-started
+	android/customization
+	android/contact-sync-and-auth

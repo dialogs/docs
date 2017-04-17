@@ -52,8 +52,6 @@ Secondary parameters:
 | defaultBackgrounds        | array of backgrounds used in chats                                      |
 +---------------------------+-------------------------------------------------------------------------+
 
-More information about account sync in contact sync section :ref:`contact sync section <contact-sync-and-auth>`.
-
 
 ``Application`` example:
 
