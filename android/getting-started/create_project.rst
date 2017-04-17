@@ -1,18 +1,18 @@
 Create new project
-========================
+==================
 
 Download or clone Sdk repository:
 ``https://bitbucket.transmit.im/projects/DLG/repos/repository_name/``
 
 For better performance, we highly recommend to use Android Studio.
 
-Create new project (File - New - New Project). 
+Create new project (File - New - New Project).
 
-Minimum supported SDK 14+ 
+Minimum supported SDK 14+
 
 
 Gradle setup
--------
+------------
 
 Add the following lines into :code:`repositories` section of your gradle file:
 
@@ -26,7 +26,7 @@ Add the following lines into :code:`repositories` section of your gradle file:
         }
     }
 
-.. note::  
+.. note::
 	Our SDK repository is private, so you need to obtain correct credentials for authorization from our developers.
 
 	You can specify them directly in the gradle file (albeit it is not recommended) or in the special file called
@@ -57,7 +57,7 @@ Use the actual version number instead of :code:`${dialogSdkVersion}`.
 
 
 Set up Application class
--------
+------------------------
 
 Now, create application class in your source set directory (java/kotlin) and inherit it from ``DialogSDKApplication``.
 This class class include MultiDex support and ``ConfigurationBuilder``
@@ -78,8 +78,5 @@ initialization (such as platform type, time zone, notification provider etc.).
 
 Almost done!
 
-For server and other flexible settings, such as app calls, pushes, delegates and more, 
+For server and other flexible settings, such as app calls, pushes, delegates and more,
 please visit :ref:`app configuration section <basic_configuration>` next.
-
-
-

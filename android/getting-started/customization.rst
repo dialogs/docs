@@ -1,22 +1,22 @@
 Customization
-========================
+=============
 
 Icons
--------
+-----
 App launcher icon
-  prefer to be located in mipmap-dpi folders. 
+  prefer to be located in mipmap-dpi folders.
   Also, specify ``android:icon`` value in AndroidManifest ``<application>`` tag.
 
 Notification icon
   add as trivial drawable in res folder.
-  Further, this icon will be sent to NotificationManager 
+  Further, this icon will be sent to NotificationManager
   through our custom builder.
-  
-  .. note::  Icon should be added with a constant name **ic_app_notify** 
-  
+
+  .. note::  Icon should be added with a constant name **ic_app_notify**
+
 
 Colors
--------
+------
 
 To decorate app simply add appropriate colors in hexadecimal format (blue theme used by default).
 It is very convinent to use `google color tool <https://material.io/color/>`_ to comply with official guidelines.
@@ -57,7 +57,7 @@ It is very convinent to use `google color tool <https://material.io/color/>`_ to
     <color name="text_secondary_inv">#8Affffff</color>
     <color name="text_hint_inv">#42ffffff</color>
     <color name="text_subheader_inv">#8Fffffff</color>
-	
+
 *Main screen and fab button*
 
 .. code-block:: xml
@@ -66,13 +66,13 @@ It is very convinent to use `google color tool <https://material.io/color/>`_ to
 	<color name="main_tab_divider">#15000000</color>
 	<color name="main_tab_text">@color/primary_alt</color>
 	<color name="main_fab_bg">#ccffffff</color>
-	
+
 .. note:: You can find full color methods list in ``DialogStyle`` class.
 
 
 
 Changing Chat Wallpapers
--------
+------------------------
 
 DialogSDK allows user to select chat wallpaper (much like Viber or Telegram).
 

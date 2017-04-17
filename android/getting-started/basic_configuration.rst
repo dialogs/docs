@@ -1,13 +1,13 @@
 .. _basic_configuration:
 
 Basic application configuration
-========================
+===============================
 
 Initial settings
--------
+----------------
 
-``DialogSDK`` is the base configuration structure class, which contains parameters for your needs. 
-To use them properly, override ``onConfigureDialogSDK`` method in Application class. 
+``DialogSDK`` is the base configuration structure class, which contains parameters for your needs.
+To use them properly, override ``onConfigureDialogSDK`` method in Application class.
 To get static DialogSDK instance call ``DialogSDK.get()``.
 
 **Mandatory** parameters for proper application startup:
@@ -58,7 +58,7 @@ More information about account sync in contact sync section :ref:`contact sync s
 ``Application`` example:
 
 .. code-block:: java
-	
+
 	public class Application extends DialogSDKApplication {
 	    @Override
 	    public void onConfigureDialogSDK() {
@@ -68,7 +68,7 @@ More information about account sync in contact sync section :ref:`contact sync s
 
 	        dialogSDK.setHomePage("http://mymessenger.im");
 	        dialogSDK.setInviteUrl("http://mymessenger.im");
-			
+
 	        dialogSDK.setPushId(9999999L);
 	        dialogSDK.setCallsEnabled(true);
 	        dialogSDK.setFastShareEnabled(true);
@@ -91,7 +91,7 @@ More information about account sync in contact sync section :ref:`contact sync s
 
 
 Deep links
--------
+----------
 
 Provide scheme for external deep links, which served for navigate to a certain chat.
 
@@ -118,9 +118,9 @@ Provide scheme for external deep links, which served for navigate to a certain c
 
 
 Start activity
--------
+--------------
 
-You can add custom start activity and specify it in AndroidManifest or use (or extend) existing one - ``DefaultStartActivity``. 
+You can add custom start activity and specify it in AndroidManifest or use (or extend) existing one - ``DefaultStartActivity``.
 This class include some helper methods from BaseActivity :
 
 +-------------------------------+---------------------------------------------+
@@ -137,15 +137,14 @@ Start button should lead to ``AuthActivity`` through intent.
 
 
 Google services
--------
+---------------
 
 To activate google services, retrieve maps api key from `Google API Console <https://console.developers.google.com/>`_
-and add the following element in ``AndroidManifest`` as a child of the <application> element, 
-by inserting it just before the closing </application> tag: 
+and add the following element in ``AndroidManifest`` as a child of the <application> element,
+by inserting it just before the closing </application> tag:
 
 .. code-block:: xml
 
   <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY" />
-			
