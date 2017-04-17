@@ -49,6 +49,18 @@ dialog SDK supports high-quality calls and secure push notifications. To enable 
 
 Pre-ensure that push notifications service and certificates are enabled for your **App ID** (see the section :ref:`Application services and certificates <application-services-and-certificates-ios-label>` for more details).
 
+The correct operation of the SDK requires a number of enabled background modes:
+
+.. code-block:: xml
+
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>audio</string>
+      <string>remote-notification</string>
+      <string>voip</string>
+    </array>
+
+Key ``audio`` allows you to talk via the messenger in background mode. ``remote-notification`` and ``voip``  are necessary to establish a connection for a call.  Key ``remote-notification`` is also required for secure push notifications.
 
 Usage descriptions
 ------------------
