@@ -1,3 +1,5 @@
+.. _contact-sync-and-auth:
+
 Contact sync and authorization
 ==============================
 
