@@ -5,10 +5,6 @@ Download or clone Sdk repository:
 
 .. code-block:: html
 
-Download or clone Sdk repository:
-
-.. code-block:: html
-
 	https://bitbucket.transmit.im/projects/DLG/repos/repository_name/
 
 For better performance, we highly recommend to use Android Studio.
