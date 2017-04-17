@@ -12,21 +12,21 @@ Project configuration
 
 Open xCode and create a new project with **Single View Application** template:
 
-.. image:: assets/xcode-single-view-application.jpg
+.. image:: assets/quick-start-guide/xcode-single-view-application.jpg
    :width: 600 px
    :align: center
 
 
 **Bundle Identifier** is derived value of fields **Product Name** and **Organization Identifier**. At the same time the Bundle Identifier should be the same as specified in your account on the Apple Developer site (**Bundle ID**). You can change it later in the project setting. Your **Team** is also specified on the Apple Developer (you will need Developer Certificates and Provisioning Profiles). Select ``Swift`` as the programming language, the device type is ``Universal`` (select ``iPhone`` if you are not going to support iPad). **Use Core Data**, **Include Unit Test** and **Include UI Test** remain at your discretion.
 
-.. image:: assets/xcode-swift-universal.jpg
+.. image:: assets/quick-start-guide/xcode-swift-universal.jpg
    :width: 600 px
    :align: center
 
 
 Click Next, open **Build Settings**, and disable **Bitcode** (dialog SDK does not support it):
 
-.. image:: assets/xcode-disable-bitcode.jpg
+.. image:: assets/quick-start-guide/xcode-disable-bitcode.jpg
    :width: 600 px
    :align: center
 
@@ -37,7 +37,7 @@ CocoaPods setup
 
 Create **Podfile** in the project root (in the same directory as the **mymessenger.xcodeproj**):
 
-.. image:: assets/podfile-location.jpg
+.. image:: assets/quick-start-guide/podfile-location.jpg
    :width: 325 px
    :align: center
 
@@ -61,7 +61,7 @@ Podfile is a plain text file containing the following values:
 
 Open **Terminal** and run ``pod install``. The installation process can take a few minutes, depending on the speed of the Internet connection. Loading of the framework (``Pre-downloading: `DialogSDK-iOS```) takes most of the time.
 
-.. image:: assets/pod-install.jpg
+.. image:: assets/quick-start-guide/pod-install.jpg
    :width: 600 px
    :align: center
 
@@ -80,7 +80,7 @@ App initializing
 
 Open **General** tab in target settings and erase **Main Interface** field:
 
-.. image:: assets/remove-main-interface.jpg
+.. image:: assets/quick-start-guide/remove-main-interface.jpg
    :width: 600 px
    :align: center
 
@@ -126,13 +126,13 @@ Remove **ViewController.swift** and **Main.storyboard** files (choose "Move to T
 
 The project is ready to start! Build and Run. Press login button on the welcome screen, enter you phone number and press **Next**.
 
-.. image:: assets/login-phone-next.jpg
+.. image:: assets/quick-start-guide/login-phone-next.jpg
    :width: 432 px
    :align: center
 
 Confirmation code will be sent to you. Enter the code and press **Next**:
 
-.. image:: assets/confirmation-code.jpg
+.. image:: assets/quick-start-guide/confirmation-code.jpg
    :width: 432 px
    :align: center
 

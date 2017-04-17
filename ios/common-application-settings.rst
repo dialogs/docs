@@ -3,7 +3,13 @@
 Common application settings
 ===========================
 
-For the full operation of the dialog SDK, you need a number settings and of user permissions in Info.plist. Some settings are necessary to get a review in the App Store.
+For the full operation of the dialog SDK, you need a number settings and of user permissions in **Info.plist**. It's the base configuration file of your iOS application:
+
+.. image:: assets/common-application-settings/info-plist-location.jpg
+   :width: 309 px
+   :align: center
+
+Some settings are necessary to pass a review in the App Store.
 
 
 Custom URL scheme
@@ -37,7 +43,7 @@ then he can immediately open a coolChannel chat in the messenger. To do this, yo
 Push Notifications and Background modes
 ---------------------------------------
 
-sorry, the section is under construction
+dialog SDK supports high-quality calls and secure push notifications. To enable push notifications open **Capabilities** tab in target settings and turn the **Push Notifications** switch on:
 
 .. image:: assets/common-application-settings/capabilities-push-notifications.jpg
    :width: 600 px
