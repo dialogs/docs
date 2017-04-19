@@ -4,4 +4,6 @@ Web SDK
 .. toctree::
 	:glob:
 
-	web/*
+	web/getting-started
+	web/customization
+	web/desktop
