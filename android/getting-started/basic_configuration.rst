@@ -174,17 +174,3 @@ Provide scheme for external deep links, which served for navigate to a certain c
                 <data android:scheme="YOUR_SCHEME" />
             </intent-filter>
         </activity>
-
-
-Google services
----------------
-
-To activate google services, retrieve maps api key from `Google API Console <https://console.developers.google.com/>`_
-and add the following element in ``AndroidManifest`` as a child of the <application> element,
-by inserting it just before the closing </application> tag:
-
-.. code-block:: xml
-
-  <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />

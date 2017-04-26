@@ -1,7 +1,7 @@
 .. _getting-started:
 
 Getting Started
-==========================
+===============
 
 This guide gives a basic introduction how to build your own application on Dialog Android SDK
 and describes some simple tasks that can be done with it.
