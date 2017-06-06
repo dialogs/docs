@@ -156,21 +156,13 @@ Provide scheme for external deep links, which served for navigate to a certain c
 
 .. code-block:: xml
 
-	<activity
-            android:name="im.sdk.MainActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="YOUR_SCHEME" />
-            </intent-filter>
-        </activity>
+    <activity
+        android:name="im.dlg.sdk.MainActivity"
+        tools:node="merge" >
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="YOUR_SCHEME" />
+        </intent-filter>
+    </activity>
