@@ -2,6 +2,6 @@ Development Operations
 ======================
 
 .. toctree::
-	:glob:
+  :glob:
 
-	devops/*
+  devops/*

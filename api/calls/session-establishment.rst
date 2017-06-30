@@ -5,16 +5,16 @@ Session establishment is based on two updates: :code:`Answer/Offer`. Whenever a 
 
 .. code-block:: protobuf
 
-	struct Offer as WebRTCSignaling(randomId sessionId, string sdp, PeerSettings ownPeerSettings) {
-	}
+  struct Offer as WebRTCSignaling(randomId sessionId, string sdp, PeerSettings ownPeerSettings) {
+  }
 
 The remote peer receives the message and checks whether it can satisfy the offer and answers with an :code:`Answer` message:
 
 
 .. code-block:: protobuf
 
-	struct Answer as WebRTCSignaling(randomId sessionId, string sdp) {
-	}
+  struct Answer as WebRTCSignaling(randomId sessionId, string sdp) {
+  }
 
 The :code:`Offer/Answer` exchange may be performed several times until both peers reach an agreement on the media session. After that the media connection itself can be created.
 

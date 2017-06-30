@@ -9,5 +9,5 @@ and describes some simple tasks that can be done with it.
 
 .. toctree::
 
-	getting-started/create_project
-	getting-started/basic_configuration
+  getting-started/create_project
+  getting-started/basic_configuration

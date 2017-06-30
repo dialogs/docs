@@ -57,35 +57,35 @@ Secondary parameters:
 
 .. code-block:: java
 
-	public class Application extends DialogSDKApplication {
-	    @Override
-	    public void onConfigureDialogSDK() {
-	        DialogSDK dialogSDK = DialogSDK.get();
-	        dialogSDK.setAppName("My Messenger");
-	        dialogSDK.setDelegate(new YourAppDelegate());
+  public class Application extends DialogSDKApplication {
+      @Override
+      public void onConfigureDialogSDK() {
+          DialogSDK dialogSDK = DialogSDK.get();
+          dialogSDK.setAppName("My Messenger");
+          dialogSDK.setDelegate(new YourAppDelegate());
 
-	        dialogSDK.setHomePage("http://mymessenger.im");
-	        dialogSDK.setInviteUrl("http://mymessenger.im");
+          dialogSDK.setHomePage("http://mymessenger.im");
+          dialogSDK.setInviteUrl("http://mymessenger.im");
 
-	        dialogSDK.setPushId(9999999L);
-	        dialogSDK.setCallsEnabled(true);
-	        dialogSDK.setFastShareEnabled(true);
+          dialogSDK.setPushId(9999999L);
+          dialogSDK.setCallsEnabled(true);
+          dialogSDK.setFastShareEnabled(true);
 
-	        DialogSDK.get().setAppVersion("app: " + BuildConfig.VERSION_NAME);
+          DialogSDK.get().setAppVersion("app: " + BuildConfig.VERSION_NAME);
 
-	        DialogSDK.get().setEndpoints(
-	                "tls://front1.mymessenger.im",
-	                "tls://front2.mymessenger.im");
-	    }
+          DialogSDK.get().setEndpoints(
+                  "tls://front1.mymessenger.im",
+                  "tls://front2.mymessenger.im");
+      }
 
 
-	    private class YourAppDelegate extends BaseDialogSDKDelegate {
-	        @Override
-	        public boolean isBubbleColored() {
-	            return true;
-	        }
-	    }
-	}
+      private class YourAppDelegate extends BaseDialogSDKDelegate {
+          @Override
+          public boolean isBubbleColored() {
+              return true;
+          }
+      }
+  }
 
 Start activity
 --------------
@@ -99,14 +99,14 @@ However, you should specify MainActivity with intent-filter in ``AndroidManifest
 
 .. code-block:: xml
 
-	    <activity
-	        android:name="im.sdk.MainActivity" 
-	        android:label="@string/app_name">
-		    <intent-filter>
-            	<action android:name="android.intent.action.MAIN" />
-            	<category android:name="android.intent.category.LAUNCHER" />
-        	</intent-filter>
-		</activity>
+      <activity
+          android:name="im.sdk.MainActivity" 
+          android:label="@string/app_name">
+        <intent-filter>
+              <action android:name="android.intent.action.MAIN" />
+              <category android:name="android.intent.category.LAUNCHER" />
+          </intent-filter>
+    </activity>
 
 In case, when you implement your own StartActivity (let it be tutorial, for example), MainActivity should be custom too,
 it's necessary to override default onCreate behaviour for proper navigation.
@@ -115,24 +115,24 @@ Custom MainActivity example:
 
 .. code-block:: java
 
-	public class MainActivity extends BaseActivity {
-	    @Override
-	    protected void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-	        DialogSDK.get().waitForReady();
+  public class MainActivity extends BaseActivity {
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          DialogSDK.get().waitForReady();
 
-	        // check whether auth was completed (AuthState.LOGGED_IN)
-	        if (!messenger().isLoggedIn()) {
-	            startActivity(new Intent(this, YourStartActivity.class));
-	            finish();
-	            return;
-	        }
+          // check whether auth was completed (AuthState.LOGGED_IN)
+          if (!messenger().isLoggedIn()) {
+              startActivity(new Intent(this, YourStartActivity.class));
+              finish();
+              return;
+          }
 
-	        DialogSDK.get().startMessagingActivity(this);
-	        finish();
-	    }
-	}	
-		
+          DialogSDK.get().startMessagingActivity(this);
+          finish();
+      }
+  }  
+    
 
 DefaultStartActivity include some helper methods from BaseActivity :
 

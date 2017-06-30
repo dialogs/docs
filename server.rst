@@ -2,6 +2,6 @@ Server
 ======
 
 .. toctree::
-	:glob:
+  :glob:
 
-	server/*
+  server/*

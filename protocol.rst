@@ -10,7 +10,7 @@ MTProto V2 now have two revisions: rev 1 and rev 2. They are incompatible and re
 MTProto V2 consist of some layers:
 
 .. toctree::
-	:glob:
+  :glob:
 
-	protocol/*
+  protocol/*
 

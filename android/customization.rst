@@ -62,10 +62,10 @@ It is very convinent to use `google color tool <https://material.io/color/>`_ to
 
 .. code-block:: xml
 
-	<color name="main_tab_selected">@color/primary_alt</color>
-	<color name="main_tab_divider">#15000000</color>
-	<color name="main_tab_text">@color/primary_alt</color>
-	<color name="main_fab_bg">#ccffffff</color>
+  <color name="main_tab_selected">@color/primary_alt</color>
+  <color name="main_tab_divider">#15000000</color>
+  <color name="main_tab_text">@color/primary_alt</color>
+  <color name="main_fab_bg">#ccffffff</color>
 
 .. note:: You can find full color methods list in ``DialogStyle`` class.
 

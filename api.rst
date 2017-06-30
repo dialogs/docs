@@ -7,6 +7,6 @@ Beside simple MQTT publish/subscribe Dialog utilizes RPC (Remote Procedure Call)
 This document contains a white paper of RPC over MQTT and high-level design of client-server communication in each Dialog Platform module.
 
 .. toctree::
-	:glob:
+  :glob:
 
-	api/*
+  api/*

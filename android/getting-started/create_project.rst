@@ -12,35 +12,35 @@ lines into :code:`repositories` section of your gradle file:
 
 .. code-block:: groovy
 
-	allprojects {
-	    repositories {
-	        jcenter()
-	        maven {
-	            url "http://dialog.bintray.com/android-sdk"
-	            credentials {
-	                username bintrayUser
-	                password bintrayPassword
-	            }
-	        }
-	    }
-	}
+  allprojects {
+      repositories {
+          jcenter()
+          maven {
+              url "http://dialog.bintray.com/android-sdk"
+              credentials {
+                  username bintrayUser
+                  password bintrayPassword
+              }
+          }
+      }
+  }
 
 .. note::
-	Our SDK repository is private, so you need to obtain correct credentials for authorization from our developers.
+  Our SDK repository is private, so you need to obtain correct credentials for authorization from our developers.
 
-	You can specify them directly in the gradle file (albeit it is not recommended) or in the special file called
-	``gradle.properties`` in the root of your gradle project (create it if it does not exist):
+  You can specify them directly in the gradle file (albeit it is not recommended) or in the special file called
+  ``gradle.properties`` in the root of your gradle project (create it if it does not exist):
 
-	+------------------+----------------------------+
-	| bintrayUser	   | Account name on `bintray`_ |
-	+------------------+----------------------------+
-	| bintrayPassword  | Api key                    |
-	+------------------+----------------------------+
+  +------------------+----------------------------+
+  | bintrayUser      | Account name on `bintray`_ |
+  +------------------+----------------------------+
+  | bintrayPassword  | Api key                    |
+  +------------------+----------------------------+
 
-	.. _bintray: https://bintray.com/
+  .. _bintray: https://bintray.com/
 
-	.. image:: resources/gradle_properties.png
-		:width: 300pt
+  .. image:: resources/gradle_properties.png
+    :width: 300pt
 
 Having the repository set up, you should add these lines into the :code:`dependencies` section of your gradle file:
 
@@ -66,14 +66,14 @@ initialization (such as platform type, time zone, notification provider etc.). D
 
 .. code-block:: java
 
-	public class Application extends DialogSDKApplication {
-   	 		@Override
-    		public void onConfigureDialogSDK() {
-       	 		DialogSDK dialogSDK = DialogSDK.get();
-       	 		dialogSDK.setAppName("My Messenger");
-      	  		dialogSDK.setHomePage("http://mymessenger.im");
-   		}
-	}
+  public class Application extends DialogSDKApplication {
+          @Override
+        public void onConfigureDialogSDK() {
+              DialogSDK dialogSDK = DialogSDK.get();
+              dialogSDK.setAppName("My Messenger");
+              dialogSDK.setHomePage("http://mymessenger.im");
+       }
+  }
 
 Almost done!
 

@@ -7,8 +7,8 @@ Apart from WebRTC, Dialog uses its own protocol for session establishment and ne
 
 .. toctree::
 
-	calls/creating-a-new-call
-	calls/session-establishment
-	calls/preconnect
-	calls/leaving-the-call
-	calls/typical-call-flow
+  calls/creating-a-new-call
+  calls/session-establishment
+  calls/preconnect
+  calls/leaving-the-call
+  calls/typical-call-flow
