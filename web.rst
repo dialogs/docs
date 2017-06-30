@@ -2,8 +2,9 @@ Web SDK
 =======
 
 .. toctree::
-	:glob:
+  :glob:
 
-	web/getting-started
-	web/customization
-	web/desktop
+  web/getting-started
+  web/customization
+  web/desktop
+  web/proxy
