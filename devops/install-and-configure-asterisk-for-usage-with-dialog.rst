@@ -11,8 +11,8 @@ Download and unpack Asterisk 14.4.0:
 
 .. code-block:: bash
 
-   wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-12-current.tar.gz
-   tar -zxvf asterisk-14-current.tar.gz
+   wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-14.4.0.tar.gz
+   tar -zxvf asterisk-14.4.0.tar.gz
 
 Resolve dependencies:
 
