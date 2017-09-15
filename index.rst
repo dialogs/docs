@@ -10,6 +10,7 @@ Indices and tables
 .. toctree::
   :maxdepth: 2
 
+  install
   api
   ios
   web
