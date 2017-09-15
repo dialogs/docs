@@ -5,6 +5,10 @@ Dialog platform supports seamless interconnection between PBXs and Dialog client
 
 .. note::
 
+   If you use Docker, the official Dockerfile can be found `here <https://github.com/dialogs/docker-asterisk/>`_.
+
+.. note::
+
    This tutorial written for Ubuntu 16.04.2, Asterisk 14.4.0 and Asterisk's chan_sip channel driver.
 
 Download and unpack Asterisk 14.4.0:

@@ -15,5 +15,5 @@ Indices and tables
   web
   android
   server
+  sip
   protocol
-  devops
