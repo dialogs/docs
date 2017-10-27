@@ -92,6 +92,101 @@ Cassandra 1 or 3 servers
 * internal LAN ports:
     * tcp: 7000, 7001, 7199, 9042, 9160, 9142
 
+File S3 api compatible storage (optional)
+"""""""""""""""""""""""""""""""""""""""""
+The server can also store files on local or network (NFS, Gluster, etc) file system. Possible integration with AWS, GCloud.
+
+Self hosted S3 api (Ceph)
+
+RADOS gateway, ceph-admin, ceph-deploy
+
+* 2 cores CPU
+* 4 GB RAM
+* 240 GB SSD
+* internal LAN ports:
+    * tcp: 80, 7480, 443, 2003, 4505-4506
+
+Storage servers
+
+OSD, mon, mgr 1 or 3 servers
+
+* 4 cores CPU
+* 4 GB RAM
+* 50+ GB HDD
+* 1024+ GB HDD
+* internal LAN ports:
+    * tcp: 80, 7480, 443, 2003, 4505-4506, 6789, 6800-7300
+
+Small installations with failover
+-------------------
+Distributed to multiple servers installation. Supports up to 500-1000 users
+
+Hardware
+~~~~~~~~
+Web, proxy, etc services
+""""""""""""""""""""""""
+Two or more servers for HA with external IP
+
+* 2 cores CPU
+* 2 GB RAM
+* 1 external IP
+* external LAN ports:
+    * tcp: 80,443, 8010, 8011
+
+
+Two or more servers for web services
+
+* 2 cores CPU
+* 4 GB RAM
+* internal LAN ports:
+    * tcp: 80,443
+
+Two or more voice servers
+
+* 2 cores CPU
+* 2 GB RAM
+* 1 external IP
+* external LAN ports:
+    * tcp: 3478
+    * tcp: 49152-65535
+    * udp: 3478
+    * udp: 49152-65535
+
+Server for push notifications
+
+* 2 cores CPU
+* 2 GB RAM
+* internal LAN ports:
+    * tcp: 8010, 8011
+
+Dialog Server & DBs
+"""""""""""""""""""
+
+3 x Dialog Server (or more by formula (2 x N) + 1 )
+
+* 4 cores CPU
+* 8 GB RAM
+* 100 GB HDD
+* internal LAN ports:
+    * tcp: 9090, 9080, 9070
+
+2 x Postgres
+
+* 4 cores CPU
+* 4 GB RAM
+* 500 GB SSD
+* internal LAN ports:
+    * tcp: 6432, 5432
+
+3 x Cassandra
+
+* 4 cores CPU
+* 8 GB RAM
+* 50+ GB HDD
+* 256+ GB SSD
+* internal LAN ports:
+    * tcp: 7000, 7001, 7199, 9042, 9160, 9142
+
 
 File S3 api compatible storage (optional)
 """""""""""""""""""""""""""""""""""""""""
