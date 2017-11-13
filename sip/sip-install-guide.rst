@@ -58,4 +58,12 @@ Additional configuration
 Create SIP users automatically
 ------------------------------
 
-SIP dialog extension allows to automatically register newly created dialog users.
+dialog SIP extension allows to automatically register newly created dialog users on the SIP server.
+To enable this feature, you shoud:
+
+1. Set ``modules.sip.autocreate.on = true`` in ``server.conf``
+2. Set ``modules.sip.autocreate.host``, ``modules.sip.autocreate.port``, ``modules.sip.autocreate.headers``, ``modules.sip.autocreate.register`` as in sip user mappings table
+
+After these steps, when a new dialog users gets created, it will be automatically registered on the SIP server udner its user id, i.e. newly created dialog user with id 434 will be register as ``sip:434@example.com``.
+
+You can specify a prefix for such users, for example newly created dialog user with id 434 will be register as ``sip:dialog434@example.com``. To enable this feature, add ``modules.sip.autocreate.user-prefix`` to the ``server.conf``.

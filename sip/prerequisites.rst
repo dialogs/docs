@@ -17,7 +17,7 @@ of the standart are:
 
   2. NAT and firewall traversal technology, using STUN, ICE, TURN, RTP-over-TCP and support for proxies
 
-Your SIP server should support following WebRTC options:
+Your SIP server should be compatible with the following WebRTC options:
 
   1. ``bundlePolicy`` = ``balanced``
 
