@@ -3,7 +3,7 @@
 Common application settings
 ===========================
 
-For the full operation of the dialog SDK, you need a number settings and of user permissions in **Info.plist**. It's the base configuration file of your iOS application:
+For the correct operation of the dialog SDK, you need a number of settings and user permissions in **Info.plist**. It's the base configuration file of your iOS application:
 
 .. image:: assets/common-application-settings/info-plist-location.jpg
    :width: 309 px

@@ -35,7 +35,7 @@ Close xCode and go to the CocoaPods setup.
 CocoaPods setup
 ---------------------
 
-Create **Podfile** in the project root (in the same directory as the **mymessenger.xcodeproj**):
+Create **Podfile** in the project root (in the same directory as the **mydialogapp.xcodeproj**):
 
 .. image:: assets/quick-start-guide/podfile-location.jpg
    :width: 325 px
@@ -46,26 +46,95 @@ Podfile is a plain text file containing the following values:
 
 .. code-block:: xml
 
-    platform :ios, '9.0'
+    platform :ios, '10.0'
     use_frameworks!
 
-    workspace 'mymessenger'
-    xcodeproj 'mymessenger.xcodeproj'
+    workspace 'MyDialogApp'
+    project 'MyDialogApp.xcodeproj'
 
-    target 'mymessenger' do
+    def common_pods
+        pod 'DialExt', :git => 'ssh://git@bitbucket.transmit.im:7999/dlg/dialext.git'
+        pod 'DLGSodium', :git => 'https://github.com/dialogs/swift-sodium.git'
+        pod 'ProtocolBuffers-Swift', '3.0.24'
+        pod 'DiaLogSentry', :git => 'ssh://git@bitbucket.transmit.im:7999/dlg/dialogsentry.git'
+        pod 'RxCocoa',    '~> 3.0'
+    end
 
-    pod 'DialogSDK-iOS' , :git => 'https://bitbucket.transmit.im/scm/dlg/sdk-ios-pod.git'
-    xcodeproj 'mymessenger.xcodeproj'
+    target 'MyDialogApp' do
+
+        pod 'DialogSDK-iOS' , :git => 'https://bitbucket.transmit.im/scm/dlg/sdk-ios-pod.git'
+        pod 'DialogWebRTC', :git => 'https://bitbucket.transmit.im/scm/dlg/dialog-webrtc-ios-pod.git', :tag => '63.2.20237'
+        pod 'FeltPen', :git => 'ssh://git@bitbucket.transmit.im:7999/dlg/feltpen.git'
+        pod 'RxSwift',   :git => 'https://github.com/dialogs/RxSwift.git', :branch => 'fix/signatures'
+
+        pod 'ClosePixelate'
+
+        # React
+        system "yarn install"
+        pod 'React', :path => './node_modules/react-native', :subspecs => [
+            'Core',
+            'RCTText',
+            'RCTImage',
+            'RCTNetwork',
+            'BatchedBridge',
+            'RCTAnimation'
+        ]
+        pod 'Yoga', :path => './node_modules/react-native/ReactCommon/yoga'
+        pod 'BVLinearGradient', :path => './node_modules/react-native-linear-gradient'
+
+        common_pods
 
     end
 
-Open **Terminal** and run ``pod install``. The installation process can take a few minutes, depending on the speed of the Internet connection. Loading of the framework (``Pre-downloading: `DialogSDK-iOS```) takes most of the time.
 
-.. image:: assets/quick-start-guide/pod-install.jpg
-   :width: 600 px
-   :align: center
+    post_install do |installer|
 
-The **mymessenger.xcworkspace** file should appear in the project directory. Double click on it, the xCode will open (it's important to open this file, not **mymessenger.xcodeproj**). Note: if you are using the Git version control system, it is recommended to add the following configuration to the **.gitignore** (otherwise you will get several gigabytes of dependencies in your Git-repository):
+        # Fix for
+        # https://github.com/CocoaPods/CocoaPods/issues/7003
+        copy_pods_resources_path = "Pods/Target Support Files/Pods-MyDialogApp/Pods-MyDialogApp-resources.sh"
+        string_to_replace = '--compile "${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"'
+        assets_compile_with_app_icon_arguments = '--compile "${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}" --app-icon "${ASSETCATALOG_COMPILER_APPICON_NAME}" --output-partial-info-plist "${BUILD_DIR}/assetcatalog_generated_info.plist"'
+        text = File.read(copy_pods_resources_path)
+        new_contents = text.gsub(string_to_replace, assets_compile_with_app_icon_arguments)
+        File.open(copy_pods_resources_path, "w") {|file| file.puts new_contents }
+
+
+        installer.pods_project.targets.each do |target|
+            if target.name == 'DialExt'
+                target.build_configurations.each do |config|
+                    config.build_settings['SWIFT_VERSION'] = '4.0'
+                end
+            end
+        end
+    end
+
+
+Create **package.json** file in the project root. It contains the following values:
+
+.. code-block:: json
+
+    {
+      "name": "MyReactNativeApp",
+      "version": "0.0.0",
+      "private": true,
+      "scripts": {
+        "start": "node node_modules/react-native/local-cli/cli.js start",
+        "build": "node node_modules/react-native/local-cli/cli.js bundle --platform ios --dev false --entry-file coop-connect/js/index.js --bundle-output coop-connect/Resources/coop.jsbundle --assets-dest coop-connect/Resources/react-native",
+        "postinstall": "sed -i '' 's\/#import <RCTAnimation\\/RCTValueAnimatedNode.h>\/#import \"RCTValueAnimatedNode.h\"\/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h"
+      },
+      "dependencies": {
+        "@dlghq/dialog-native-components": "0.7.8",
+        "react": "16.0.0-alpha.12",
+        "react-native": "0.47.1"
+      }
+    }
+
+    
+Open **Terminal** and run ``brew install node``. Wait until the installation is complete and than run ``npm install``.
+
+Preparatory work completed, run ``pod install``. The installation process can take a few minutes, depending on the speed of the Internet connection. Loading of the framework (``Pre-downloading: `DialogSDK-iOS```) takes most of the time.
+
+The **MyDialogApp.xcworkspace** file should appear in the project directory. Double click on it, the xCode will open (it's important to open this file, not **MyDialogApp.xcodeproj**). Note: if you are using the Git version control system, it is recommended to add the following configuration to the **.gitignore** (otherwise you will get several gigabytes of dependencies in your Git-repository):
 
 .. code-block:: xml
 
@@ -73,7 +142,7 @@ The **mymessenger.xcworkspace** file should appear in the project directory. Dou
     Podfile.lock
     Pods/
 
-It also makes sense to add the MyDialogApp.xcworkspace file to the exceptions list, because of it is generated automatically.
+It also makes sense to add the **MyDialogApp.xcworkspace** file to the exceptions list, because of it is generated automatically.
 
 App initializing
 ----------------
@@ -97,7 +166,7 @@ Remove **ViewController.swift** and **Main.storyboard** files (choose "Move to T
 
     //
     //  AppDelegate.swift
-    //  mymessenger
+    //  MyDialogApp
     //
     //  Copyright © 2017 My Company, LLC. All rights reserved.
     //
