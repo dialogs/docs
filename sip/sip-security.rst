@@ -2,13 +2,13 @@ SIP Security
 ============
 
 Signaling traffic between dialog and dialog's clients is transmitted securely
-using TLS encryption (which is proven to prevent eavesdropping, tampering,
-or message forgery).
+using secure and reliable dialog protocol over TLS transport.
 
 Media traffic between dialog clients and TURN servers is also encrypted via
-TLS / DTLS.
+TLS / DTLS (which is proven to prevent eavesdropping, tampering, or message
+forgery).
 
-Media traffic between dialog clients and SIP clients is secured by DTLS
+Media traffic between dialog clients and SIP clients is also secured by DTLS
 (WebRTC enforces using DTLS for all media connections).
 
 .. warning::
