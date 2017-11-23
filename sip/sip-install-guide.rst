@@ -1,6 +1,27 @@
 SIP Integration Guide
 =====================
 
+
+Prerequisites
+-------------
+
+The current version of the dialog SIP module assumes:
+
+1. You have a SIP registrar server
+
+The dialog SIP module cannot interact with other sip clients directly.
+
+2. WebRTC must be configured as following:
+
+  1. Audio codecs are `OPUS <https://opus-codec.org/>`_ (the recommended one) or
+     PCMA/PCMU, video codec is `VP8 <https://en.wikipedia.org/wiki/VP8>`_
+
+  2. ICE (Interactive Connectivity Establishment) is enabled to perform NAT traversal
+
+  3. ``bundlePolicy`` = ``balanced``
+
+  4. ``rtcpMuxPolicy`` = ``require``
+
 Basic configuration
 -------------------
 
