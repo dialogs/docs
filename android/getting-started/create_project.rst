@@ -1,3 +1,5 @@
+.. _create_project:
+
 Create new project
 ==================
 

@@ -11,3 +11,4 @@ and describes some simple tasks that can be done with it.
 
   getting-started/create_project
   getting-started/basic_configuration
+  getting-started/intergration_with_other_apps
