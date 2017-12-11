@@ -71,9 +71,21 @@ If you implemented any of providers, add :code:`tools:replace="android:authoriti
 Adding Dialog to your app
 -------------------------
 
-First, initialize messenger by executing:
+First, initialize messenger by executing in onCreate() in your Application class :code:`DialogSDK.get().initilize(application)` .
 
-:code:`DialogSDK.get().initilize(application)`
+Simple example:
+
+.. code-block:: java
+
+    DialogSDK dialogSDK = DialogSDK.get();
+    dialogSDK.setEndpoints("your custom endpoint");
+    dialogSDK.setCanChangeEndpoints(true);
+    dialogSDK.setForwardsEnabled(true);
+    ...
+    dialogSDK.initialize(this);
+
+You can find more information about configuration possibilities in :ref:`basic application configuration section <basic_configuration>`
+
 
 Entry point activity can be started with method from DialogSDK class:
  
@@ -81,11 +93,13 @@ Entry point activity can be started with method from DialogSDK class:
 
 You need to specify token for end-to-end authorization as a second parameter.
 
+To check messenger login state use :code:`messenger().isLoggedIn` .
+
 
 There are 3 activity screens for each section:
 
 DialogsActivity 
-  Screen with user private and groupdialogs 
+  Screen with user private and group dialogs 
 
 ContactsActivity 
   Screen with list of contacts imported from device address book 
