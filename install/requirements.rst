@@ -113,7 +113,7 @@ Hardware
 
 Cloud service
 ~~~~~~~~
-* AWS: t2.xlarge
+* AWS: t2.xlarge with 100GB SSD
 * DO: 8 GB/4 vCPUs/160 GB/5 TB Standard Droplets or 16 GB/8 vCPUs/100 GB/5 TB Optimized Droplets
 
 Network
@@ -150,8 +150,8 @@ Hardware
 
 Cloud service
 ~~~~~~~~
-* AWS: t2.xlarge with 500GB SSD
-* DO: 8 GB/4 vCPUs/160 GB/5 TB Standard Droplets with 500 GB block storage or 8 GB/4 vCPUs/50 GB/5 TB Optimized Droplets with 500 GB block storage 
+* AWS: t2.xlarge with 256GB SSD
+* DO: 8 GB/4 vCPUs/160 GB/5 TB Standard Droplets with 250 GB block storage or 8 GB/4 vCPUs/50 GB/5 TB Optimized Droplets with 250 GB block storage 
 
 Network
 ~~~~~~~~
@@ -529,7 +529,7 @@ Hardware
 Cloud service
 ~~~~~~~~
 * AWS: t2.medium with 240GB SSD
-* DO: 4 GB/2 vCPUs/80 GB/4 TB Standard Droplets or 4 GB/2 vCPUs/25 GB/5 TB Optimized Droplets with 250 GB block storage 
+* DO: 4 GB/2 vCPUs/80 GB/4 TB Standard Droplets with 250 GB block storage or 4 GB/2 vCPUs/25 GB/5 TB Optimized Droplets with 250 GB block storage 
 
 Network
 ~~~~~~~~
