@@ -556,3 +556,8 @@ Network
 ~~~~~~~~
 * internal LAN ports:
     * tcp: 80, 7480, 443, 2003, 4505-4506, 6789, 6800-7300
+
+Cloud services prices
+============
+DigitalOcean: https://docs.google.com/spreadsheets/d/1Z1cmQK2KOMQqQ3i4NMYw8gA-g1ku-hjCm-VQZpvDhrM/
+Amazon Web Services: https://docs.google.com/spreadsheets/d/1ANPEJumcmPAX1mEF8k8FjUui9q_IPbgeLqdmHjoTlPw/
