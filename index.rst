@@ -11,10 +11,8 @@ Indices and tables
   :maxdepth: 2
 
   install
-  api
   ios
   web
   android
   server
   sip
-  protocol
