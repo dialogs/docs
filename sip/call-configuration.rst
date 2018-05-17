@@ -1,16 +1,16 @@
 Client call configuration
 =========================
 
-- ``callsEnabled: Bool``, default is ``true``. Sets if calls are enabled. If
+- ``callsEnabled: Bool``, default is true. Sets if calls are enabled. If
   calls are disabled, all incoming calls will be ignored, call log tab is hidden
   and make call buttons are not shown.
 
-- ``videoCallsEnabled: Bool``, default is ``true``. Sets if video calls are
-  enabled. If video calls are disable, the video call button is hidden, incoming
-  video is not shown and camera cannot be turned on while on call. This field is
+- ``videoCallsEnabled: Bool``, default is true. Sets if video calls are enabled.
+  If video calls are disabled, the video call button is hidden, incoming video
+  is not shown and camera cannot be turned on while on call. This field is
   ignored if calls are disabled.
 
-- ``groupCallsEnabled: Bool``, default is ``false``. Sets if group calls are
+- ``groupCallsEnabled: Bool``, default is false. Sets if group calls are
   enabled. If group calls are disabled, the call button for group peers will be
   hidden or disabled. This field is ignored if calls are disabled.
 
@@ -19,10 +19,10 @@ Client call configuration
   group will be hidden. This field is ignored if calls are disabled or if group
   calls are disabled.
 
-- ``emojiSecurityEnabled: Bool``, default is ``false``. Sets if the client
+- ``emojiSecurityEnabled: Bool``, default is false. Sets if the client
   should show emoji fingerprint. This field is ignored if calls are disabled.
 
-- ``holdingEnalbed: Bool``, default is ``false``. Sets if the client
+- ``holdingEnalbed: Bool``, default is false. Sets if the client
   should support holding. If holding is disabled, the hold button will be
   hidden, however **incoming hold requests will be processed correctly**.
 
@@ -49,3 +49,23 @@ WebRTC Configuration
 - ``workaroundFreeSwitch10258: Bool``. Workaround for FreeSwitch bug `FS-10258
   <https://freeswitch.org/jira/browse/FS-10258>`_.
   Munges SDP and sets ``a=setup:passive`` manually.
+
+Video Configuration
+-------------------
+
+- ``enabled: Bool``, default is true. Sets if video calls are enabled. If video
+  calls are disabled, the video call button is hidden, incoming video is not
+  shown and camera cannot be turned on while on call. This field is ignored if
+  calls are disabled.
+
+- ``togglingEnabled: Bool``, default is true. Sets if video can be turned on and
+  off while on call. In SIP mode turning video on call causes reinvites, so
+  the PBX must be ready for that. The setting is ignore if video is disabled.
+
+- ``videoCallButtonShown: Bool``, default is false. Sets whether we need to show
+  videocall button in additional to the regular call. This can be used for
+  PBX's that do not support reinvites.
+
+- ``screenSharingEnabled: Bool``, default is false. Web and android only. Sets
+  if screen sharing button is enabled. Screen sharing works much like a regular
+  one, adding an additional button to change video stream.
