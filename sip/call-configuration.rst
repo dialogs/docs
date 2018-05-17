@@ -48,4 +48,4 @@ WebRTC Configuration
   SIP PBX, check its bundling mode.
 - ``workaroundFreeSwitch10258: Bool``. Workaround for FreeSwitch bug `FS-10258
   <https://freeswitch.org/jira/browse/FS-10258>`_.
-  Mungles SDP and sets ``a=setup:passive`` manually.
+  Munges SDP and sets ``a=setup:passive`` manually.
