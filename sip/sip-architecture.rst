@@ -1,5 +1,5 @@
-SIP Architecture
-================
+SIP High Level Architecture
+===========================
 
 .. image:: hla.png
 
