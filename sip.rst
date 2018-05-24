@@ -1,5 +1,5 @@
-SIP integration
-===============
+Video and audio calls
+=====================
 
 .. toctree::
   :glob:

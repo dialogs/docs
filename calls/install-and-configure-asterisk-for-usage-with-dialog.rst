@@ -1,5 +1,5 @@
-Install and configure Asterisk PBX
-==================================
+Extra: Install and configure Asterisk PBX
+=========================================
 
 Dialog platform supports seamless interconnection between PBXs and Dialog clients, allowing you to make calls from SIP directly to Dialog. Below is the example configuration of the Asterisk PBX to use with Dialog platform.
 
