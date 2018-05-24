@@ -15,4 +15,4 @@ Indices and tables
   web
   android
   server
-  sip
+  calls
