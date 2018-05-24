@@ -1,0 +1,7 @@
+Calls
+=====
+
+.. toctree::
+  :glob:
+
+  calls/*

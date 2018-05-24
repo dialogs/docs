@@ -1,5 +1,5 @@
-SIP Network configuration
-=========================
+Network
+=======
 
 ICE servers
 -----------
