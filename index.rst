@@ -16,3 +16,5 @@ Indices and tables
   android
   server
   calls
+  bots
+  integrations
