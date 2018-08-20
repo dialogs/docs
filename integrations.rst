@@ -4,4 +4,4 @@ Integrations
 .. toctree::
   :glob:
   
-    integrations/group-hook
+  integrations/*
