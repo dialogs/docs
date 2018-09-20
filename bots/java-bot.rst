@@ -74,6 +74,56 @@ Simple ping-pong example:
 
 .. image:: assets/bots_ping_pong_example.png
 
+Send files
+---------
+
+For image sending use method
+
+.. code-block:: java
+  
+  bot.messaging().onMessage(message ->
+           ...
+          ).thenCompose(aVoid ->
+                  bot.messaging().sendMedia(message.getPeer(), ((TextContent) message.getMessageContent()).getMedias())
+          )
+  ...
+
+
+It is implied, that file will be received from server, however it can be passed manually with appropriate file id:
+
+.. code-block:: java
+  
+  public ArrayList<MessagingOuterClass.MessageMedia> createMedias() {
+          long fileId = 1234; // your file id
+          long accessHash = 312; // server access hash
+          FileLocation fileLocation = new FileLocation(fileId, accessHash);
+
+          int width = 230; // image width
+          int height = 230; // image height
+          int fileSize =  2345;
+          ImageLocation imageLocation = new ImageLocation(fileLocation, width, height, fileSize);
+          ImageMedia imageMedia = new ImageMedia(imageLocation);
+          MediaMessage mediaMessage = new MediaMessage(imageMedia, null, null, null);
+          ArrayList<MessagingOuterClass.MessageMedia> medias = new ArrayList<>();
+          medias.add(MediaMessage.buildMedia(mediaMessage));
+          return medias;
+      }
+  ...
+  
+  bot.messaging().sendMedia(message.getPeer(), createMedias())
+  
+Document sending:
+
+.. code-block:: java
+  
+  bot.messaging().onMessage(message ->
+           ...
+          ).thenCompose(aVoid ->
+                  bot.messaging().sendMedia(message.getPeer(), (DocumentContent) message.getMessageContent())
+          )
+  ...
+  
+
 
 Interactive elements
 --------------------
