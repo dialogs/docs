@@ -98,6 +98,41 @@ With the following result:
 
 .. image:: assets/bots_simple_buttons.png
 
+
+Dropdown interact:
+
+.. code-block:: java
+
+  ...
+  List<InteractiveSelectOption> selectOptions = new ArrayList<>();
+  selectOptions.add(new InteractiveSelectOption("Tom & Cross", "Tom & Cross"));
+                                selectOptions.add(new InteractiveSelectOption("Pinky gram", "Pinky gram"));
+  selectOptions.add(new InteractiveSelectOption("Rody Mo", "Rody Mo"));
+
+  ArrayList<InteractiveAction> actions = new ArrayList<>();
+  InteractiveSelect interactiveSelect = new InteractiveSelect("Who want's to play?", "Choose one...", selectOptions);
+  actions.add(new InteractiveAction("action_1", interactiveSelect));
+                                InteractiveGroup interactiveGroup = new InteractiveGroup("Quiz", "Do you want to answer a quiz?", actions);
+  bot.interactiveApi().send(message.getPeer(), interactiveGroup);
+  ...
+  
+Produces next view:
+
+.. image:: assets/bots_select_list.gif
+
+  
+Additional option for clicking on interactive selection is action window:
+  
+.. code-block:: java
+  
+  new InteractiveConfirm("Confirm", "Are you sure?", "Yes", "Cancel")
+
+
+Call action window:
+
+.. image:: assets/bots_action_window.png
+
+
 Subscribe to events by the interactiveApi() :
 
 .. code-block:: java
