@@ -1,6 +1,23 @@
 Java Bot SDK
 ============
 
+Configuring
+-----------
+
+Bot is hosted on
+`grpc server <https://grpc-test.transmit.im/>`_.
+
+Login information:
+
+  +------------------+----------------------------------------+
+  | Endpoint         | ``https://grpc-test.transmit.im:8443`` |
+  +------------------+----------------------------------------+
+  | Credentials      | *testuser* / *testpassword*            |
+  +------------------+----------------------------------------+
+
+.. image:: assets/bots_login_screen.png
+
+
 Messaging
 ---------
 
@@ -75,7 +92,7 @@ Simple ping-pong example:
 .. image:: assets/bots_ping_pong_example.png
 
 Send files
----------
+----------
 
 For image sending use method
 
